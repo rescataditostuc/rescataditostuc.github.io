@@ -124,13 +124,6 @@
         <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
         <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
 
-        <!-- Filtros: el JavaScript los conecta más abajo -->
-        <div class="mt-8 flex flex-wrap gap-3" role="group" aria-label="Filtrar por especie">
-          <button class="chip bg-white" data-filtro="todos" aria-pressed="true">Todos</button>
-          <button class="chip bg-white" data-filtro="perro" aria-pressed="false">Perros</button>
-          <button class="chip bg-white" data-filtro="gato" aria-pressed="false">Gatos</button>
-        </div>
-
         <!-- Acá se dibujan las tarjetas (ver función "tarjeta" en el script) -->
         <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
       </div>
@@ -177,48 +170,62 @@
       </div>
     </section>
 
-    <!-- ============ CÓMO AYUDAR ============ -->
-    <section id="ayuda" class="py-16 px-4 bg-salvia/10">
-      <div class="max-w-6xl mx-auto">
-        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Cómo ayudar</h2>
-        <p class="mt-3 text-lg max-w-prose">No hace falta mucho: un granito de cada uno cambia vidas.</p>
+   <!-- ============ CÓMO AYUDAR ============ -->
+   <section id="ayuda" class="py-16 px-4 sm:px-8 lg:px-12 bg-salvia/10">
+    <div class="max-w-[92rem] mx-auto">
+      <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Cómo ayudar</h2>
+      <p class="mt-3 text-lg max-w-prose">No hace falta mucho: un granito de cada uno cambia vidas.</p>
 
-        <div class="mt-10 grid md:grid-cols-3 gap-6">
-          <!-- Columna 1: donaciones -->
-          <div id="donar" class="bg-white rounded-2xl p-6 border-2 border-terracota flex flex-col gap-4">
-            <h3 class="font-titulo font-extrabold text-xl">Donaciones económicas</h3>
-            <p>Cada aporte nos ayuda con la veterinaria, el alimento y los cuidados de los rescatados.</p>
-            <div class="bg-crema rounded-xl p-4 text-center border-2 border-dashed border-terracota">
-              <p class="text-sm font-bold">Alias de Mercado Pago</p>
-              <p id="alias" class="mt-1 font-titulo font-extrabold text-xl break-all select-all"></p>
-            </div>
-            <button id="copiarAlias" class="btn btn-terracota" aria-live="polite">Copiar alias</button>
+      <div class="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+        <!-- Columna 1: donaciones -->
+        <div id="donar" class="bg-white rounded-2xl p-5 border-2 border-terracota flex flex-col gap-4">
+          <h3 class="font-titulo font-extrabold text-xl">Donaciones económicas</h3>
+          <p class="flex-1">Cada aporte nos ayuda con la veterinaria, el alimento y los cuidados de los rescatados.</p>
+          <div class="bg-crema rounded-xl px-3 py-4 text-center border-2 border-dashed border-terracota">
+            <p class="text-sm font-bold">Alias de Mercado Pago</p>
+            <p id="alias" class="mt-1 font-titulo font-extrabold text-base xl:text-lg select-all"></p>
           </div>
+          <button id="copiarAlias" class="btn btn-terracota" aria-live="polite">Copiar alias</button>
+        </div>
 
-          <!-- Columna 2: hogar de tránsito -->
-          <div id="transito" class="bg-white rounded-2xl p-6 border border-marron/10 flex flex-col gap-4">
-            <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito</h3>
-            <p class="flex-1">Transitar es abrirle tu casa a un animal por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
-            <a data-wa="Hola rescataditos.tuc! Quiero postularme como hogar de tránsito" target="_blank" rel="noopener noreferrer" class="btn btn-salvia">Quiero ser tránsito</a>
-          </div>
+        <!-- Columna 2: hogar de tránsito -->
+        <div id="transito" class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
+          <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito</h3>
+          <p class="flex-1">Transitar es abrirle tu casa a un animal por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
+          <a data-wa="Hola rescataditos.tuc! Quiero postularme como hogar de tránsito" target="_blank" rel="noopener noreferrer" class="btn btn-salvia">Quiero ser tránsito</a>
+        </div>
 
-          <!-- Columna 3: insumos -->
-          <div class="bg-white rounded-2xl p-6 border border-marron/10 flex flex-col gap-4">
-            <h3 class="font-titulo font-extrabold text-xl">Insumos y alimento</h3>
-            <p>Lo que más necesitamos:</p>
-            <ul class="flex-1 space-y-2 font-semibold">
-              <li><span aria-hidden="true">🥣</span> Alimento balanceado</li>
-              <li><span aria-hidden="true">🥣</span> Gatolac</li>
-              <li><span aria-hidden="true">🩹</span> Gasas</li>
-              <li><span aria-hidden="true">🩹</span> pasitllas para desparacitar</li>
-              <li><span aria-hidden="true">🧶</span> Mantas</li>
-            </ul>
-            <a data-wa="Hola rescataditos.tuc! Quiero donar insumos. ¿Cómo coordinamos?" target="_blank" rel="noopener noreferrer" class="btn btn-borde">Coordinar entrega</a>
+        <!-- Columna 3: insumos -->
+        <div class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
+          <h3 class="font-titulo font-extrabold text-xl">Insumos y alimento</h3>
+          <p>Lo que más necesitamos:</p>
+          <ul class="flex-1 space-y-2 font-semibold">
+            <li><span aria-hidden="true">🥣</span> Alimento balanceado</li>
+            <li><span aria-hidden="true">🥣</span> Gatolac</li>
+            <li><span aria-hidden="true">🩹</span> Gasas</li>
+            <li><span aria-hidden="true">🩹</span> Pastillas para desparasitar</li>
+            <li><span aria-hidden="true">🧶</span> Mantas</li>
+          </ul>
+          <a data-wa="Hola rescataditos.tuc! Quiero donar insumos. ¿Cómo coordinamos?" target="_blank" rel="noopener noreferrer" class="btn btn-borde">Coordinar entrega</a>
+        </div>
+
+        <!-- Columna 4: castración gratuita -->
+        <div id="castracion" class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
+          <h3 class="font-titulo font-extrabold text-xl">Castración gratuita</h3>
+          <p class="flex-1">Castrar a tiempo evita camadas no deseadas y previene enfermedades. Podés solicitar un turno gratuito a través de la Municipalidad de San Miguel de Tucumán.</p>
+          <a href="https://smt.gob.ar" target="_blank" rel="noopener noreferrer" class="btn btn-salvia">Sacar turno en CENARA</a>
+          <div class="pt-3 border-t border-marron/10 text-center">
+            <p class="text-sm text-marron/80 leading-snug">¿Tenés complicaciones para realizar el turno?</p>
+            <a data-wa="Hola rescataditos.tuc! Tengo complicaciones para sacar un turno de castración gratuita en la Municipalidad. ¿Me ayudan?"
+               target="_blank" rel="noopener noreferrer"
+               class="mt-1 inline-block text-sm font-bold text-terracota-oscuro underline underline-offset-4 hover:brightness-90">
+              Contactanos y te ayudamos
+            </a>
           </div>
         </div>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
   <!-- ============ APARTADO: MASCOTAS DESAPARECIDAS ============ -->
   <section id="vistaPerdidos" class="hidden flex-1 pt-28 pb-16 px-4">
@@ -270,32 +277,58 @@
 
   <script>
     /* ========== CONFIGURACIÓN: lo que más vas a editar ========== */
-    const WHATSAPP_NUMBER = '5493816301226';   // TODO: número real, con código de país, sin + ni espacios
+    const CELU_VICTORIA = '5493816301226';   // TODO: número real, con código de país, sin + ni espacios
+    const CELU_CELESTE = '5493815166528';      
+    const CELU_ROCIO = '5493816752076';
     const INSTAGRAM_URL = 'https://instagram.com/rescataditos.tuc';
     const ALIAS_MP = 'RESCATADITOS.TUC';
 
     /* ========== ANIMALES EN ADOPCIÓN ==========
        EJEMPLO: reemplazar por animales reales. Para sumar uno, copiá un bloque { ... } entero
-       y cambiá los datos. "especie" tiene que ser 'perro' o 'gato' (así funciona el filtro). */
-    const ANIMALES = [
-      { nombre: 'Canela', especie: 'perro', edad: '2 años aprox.', estado: 'Urgente',
-        etiquetas: ['Castrada', 'Vacunada', 'Se lleva con perros'],
-        historia: 'La encontramos flaquita y asustada en una vereda. Hoy es pura ternura y solo le falta una familia.',
-        foto: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=70' },
-      { nombre: 'Toto', especie: 'perro', edad: '6 meses aprox.', estado: 'En adopción',
-        etiquetas: ['Vacunado', 'Desparasitado', 'Juguetón'],
-        historia: 'Llegó con sus hermanitos dentro de una caja. Es curioso, ama correr y los mimos.',
-        foto: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=70' },
-      { nombre: 'Mishi', especie: 'gato', edad: '1 año aprox.', estado: 'En adopción',
+       y cambiá los datos. */
+       const ANIMALES = [
+      {
+        nombre: 'Mishi',
+        especie: 'gato',
+        edad: '1 año aprox.',
+        estado: 'Urgente',
         etiquetas: ['Castrada', 'Vacunada', 'Tranquila'],
         historia: 'Rescatada de un baldío. Ronronea apenas la acariciás y se adapta fácil a vivir en departamento.',
-        foto: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=70' },
-      { nombre: 'Ramón', especie: 'gato', edad: '4 años aprox.', estado: 'Urgente',
+        foto: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=70',
+        telefono: CELU_CELESTE
+      },
+      {
+        nombre: 'Ramón',
+        especie: 'gato',
+        edad: '4 años aprox.',
+        estado: 'En adopción',
         etiquetas: ['Castrado', 'Vacunado', 'Se lleva con gatos'],
         historia: 'Pasó años en la calle y ahora busca un rincón calentito. Es sereno, cariñoso y muy agradecido.',
-        foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=70' }
+        foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=70',
+        telefono: CELU_ROCIO
+      },
+      {
+        nombre: 'Olivia',
+        especie: 'gato',
+        edad: '5 meses aprox.',
+        estado: 'En adopción',
+        etiquetas: ['Vacunada', 'Desparasitada', 'Juguetona'],
+        historia: 'La encontramos solita bajo la lluvia. Ama jugar con pelotitas y dormir a upa.',
+        foto: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=600&q=70',
+        telefono: CELU_VICTORIA
+      },
+      {
+        nombre: 'Tito',
+        especie: 'gato',
+        edad: '2 años aprox.',
+        estado: 'Urgente',
+        etiquetas: ['Castrado', 'Vacunado', 'Mimoso'],
+        historia: 'Es súper compañero y tranquilo. Busca un hogar seguro con protecciones en ventanas o balcón.',
+        foto: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=600&q=70',
+        telefono: CELU_CELESTE
+      }
     ];
-
+    
     /* ========== ANIMALES EN DIFUSIÓN ========== */
     // EJEMPLO: borrar o reemplazar antes de publicar
     const DIFUSION = [
@@ -306,7 +339,8 @@
         necesita: 'Adopción',
         urgente: true,
         historia: 'La resguardó una vecina tras encontrarla desorientada. Tiene alrededor de 1 año, es súper dócil y se lleva bien con otros perros.',
-        foto: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=70'
+        foto: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=70',
+        telefono: '5493816301226' // Número de la vecina que la resguarda
       },
       {
         nombre: 'Simón',
@@ -315,7 +349,8 @@
         necesita: 'Tránsito',
         urgente: false,
         historia: 'Necesita un lugar seguro por unas semanas mientras termina su tratamiento veterinario y recupera peso.',
-        foto: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=600&q=70'
+        foto: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=600&q=70',
+        telefono: '5493816301226' // Número de la vecina que la resguarda
       }
     ];
 
@@ -329,7 +364,8 @@
         fecha: '2026-11-22',
         descripcion: 'Mestizo mediano color marrón claro, tiene collar azul gastado y una manchita blanca en el pecho.',
         estado: 'Se busca',
-        foto: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=70'
+        foto: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=70',
+        telefono: '5493816301226' // Número de la persona que lo busca
       },
       {
         nombre: 'Nala',
@@ -346,7 +382,7 @@
     const $ = id => document.getElementById(id);
 
     // Arma el link de WhatsApp con el mensaje ya escrito (encodeURIComponent cuida los espacios y tildes)
-    const linkWhatsApp = texto => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
+    const linkWhatsApp = (texto, numero) => `https://wa.me/${numero || CELU_VICTORIA}?text=${encodeURIComponent(texto)}`;
 
     // Si una foto no carga, mostramos un dibujo de huella en su lugar
     const FOTO_RESPALDO = 'data:image/svg+xml,' + encodeURIComponent(
@@ -379,28 +415,17 @@
             ${a.etiquetas.map(e => `<li class="text-xs font-bold bg-crema border border-marron/10 rounded-full px-2.5 py-1">${e}</li>`).join('')}
           </ul>
           <p class="text-sm leading-relaxed flex-1">${a.historia}</p>
-          <a href="${linkWhatsApp('Hola rescataditos.tuc! Me interesa adoptar a ' + a.nombre)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero adoptarlo</a>
+          <a href="${linkWhatsApp('Hola rescataditos.tuc! Me interesa adoptar a ' + a.nombre, a.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero adoptarlo</a>
         </div>
       </article>`;
 
-    const botonesFiltro = document.querySelectorAll('[data-filtro]');
-    function mostrar(filtro) {
-      $('grilla').innerHTML = ANIMALES
-        .filter(a => filtro === 'todos' || a.especie === filtro)
-        .map(tarjeta).join('');
-      botonesFiltro.forEach(b => {
-        const activo = b.dataset.filtro === filtro;
-        b.setAttribute('aria-pressed', activo);
-        b.classList.toggle('bg-salvia-oscuro', activo);
-        b.classList.toggle('text-white', activo);
-        b.classList.toggle('bg-white', !activo);
-      });
+      function mostrar() {
+      $('grilla').innerHTML = ANIMALES.map(tarjeta).join('');
     }
-    botonesFiltro.forEach(b => b.addEventListener('click', () => mostrar(b.dataset.filtro)));
 
     /* ========== TARJETAS Y FILTROS: DIFUSIÓN ========== */
     const tarjetaDifusion = d => {
-      const mensajeWa = `Hola rescataditos.tuc! Vi a ${d.nombre} en la web (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`;
+    const mensajeWa = `Hola! Vi a ${d.nombre} en la web de rescataditos.tuc (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`;
       return `
         <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
           <div class="relative">
@@ -417,7 +442,7 @@
               <p class="text-sm font-semibold text-marron/80 capitalize">${d.especie} · Zona ${d.zona}</p>
             </div>
             <p class="text-sm leading-relaxed flex-1">${d.historia}</p>
-            <a href="${linkWhatsApp(mensajeWa)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero ayudar a ${d.nombre}</a>
+            <a href="${linkWhatsApp(mensajeWa, d.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero ayudar a ${d.nombre}</a>
           </div>
         </article>`;
     };
@@ -446,9 +471,9 @@
     /* ========== TARJETAS Y VISTA: MASCOTAS PERDIDAS ========== */
     const tarjetaPerdido = m => {
       const seBusca = m.estado === 'Se busca';
-      const mensajeWa = `Hola rescataditos.tuc! Tengo información sobre ${m.nombre}, la mascota que se perdió en ${m.zona}`;
+      const mensajeWa = `Hola! Vi a ${m.nombre} en la web de rescataditos.tuc y tengo información sobre la mascota que se perdió en ${m.zona}`;
       const pieTarjeta = seBusca
-        ? `<a href="${linkWhatsApp(mensajeWa)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Tengo información</a>`
+        ? `<a href="${linkWhatsApp(mensajeWa, m.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Tengo información</a>`
         : `<p class="font-titulo font-extrabold text-salvia-oscuro text-center py-2">¡Volvió a casa!</p>`;
 
       return `
