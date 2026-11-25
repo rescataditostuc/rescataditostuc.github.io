@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>rescataditos.tuc – Rescate y adopción responsable en Tucumán</title>
-  <meta name="description" content="Somos un grupo independiente  de voluntarias que se dedican al rescate y adopción responsable de animales de San Miguel de Tucumán. Conocé a nuestros perros y gatos en adopción, doná u ofrecé tu casa como tránsito para darle una oportunidad a un rescatadito.">
+  <meta name="description" content="Somos un grupo independiente de voluntarias que se dedican al rescate y adopción responsable de animales de San Miguel de Tucumán. Conocé a nuestros perros y gatos en adopción, doná u ofrecé tu casa como tránsito para darle una oportunidad a un rescatadito.">
 
   <!-- Open Graph: cómo se ve el link cuando lo compartís por WhatsApp o redes -->
   <meta property="og:type" content="website">
@@ -56,7 +56,7 @@
   </style>
 </head>
 
-<body class="font-texto bg-crema text-marron antialiased">
+<body class="font-texto bg-crema text-marron antialiased min-h-screen flex flex-col">
 
   <!-- Dibujo de la huella: se define una vez y se reutiliza con <use href="#huella"> -->
   <svg class="absolute w-0 h-0" aria-hidden="true">
@@ -95,7 +95,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="vistaPrincipal" class="flex-1">
     <!-- ============ HERO ============ -->
     <section id="inicio" class="pt-28 pb-16 px-4">
       <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
@@ -107,7 +107,7 @@
             Somos un grupo independiente de 3 chicas que rescatan, cuidan y buscan familia para perros y gatos de San Miguel de Tucumán. Trabajamos con mucho amor y responsabilidad. Creemos en la adopción responsable como un compromiso para toda la vida.
           </p>
           <div class="mt-8 flex flex-wrap gap-3">
-            <a href="#adopciones" class="btn btn-terracota">Conocé a los rescataditos</a>
+            <a href="#adopciones" class="btn btn-terracota">Conocé a nuestros rescataditos</a>
             <a href="#ayuda" class="btn btn-borde">Quiero ayudar</a>
           </div>
         </div>
@@ -121,7 +121,7 @@
     <!-- ============ ADOPCIONES ============ -->
     <section id="adopciones" class="py-16 px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a los rescataditos</h2>
+        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
         <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
 
         <!-- Filtros: el JavaScript los conecta más abajo -->
@@ -133,6 +133,47 @@
 
         <!-- Acá se dibujan las tarjetas (ver función "tarjeta" en el script) -->
         <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ ANIMALES EN DIFUSIÓN ============ -->
+    <section id="difusion" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Necesitan hogar</h2>
+        <p class="mt-3 text-lg max-w-prose">
+          Estos animales no están en nuestro refugio, pero los ayudamos a difundir para que encuentren una familia o un hogar de tránsito.
+        </p>
+
+        <!-- Filtros por necesidad: el JavaScript los conecta más abajo -->
+        <div class="mt-8 flex flex-wrap gap-3" role="group" aria-label="Filtrar animales en difusión">
+          <button class="chip bg-white" data-filtro-difusion="todos" aria-pressed="true">Todos</button>
+          <button class="chip bg-white" data-filtro-difusion="Adopción" aria-pressed="false">Adopción</button>
+          <button class="chip bg-white" data-filtro-difusion="Tránsito" aria-pressed="false">Tránsito</button>
+        </div>
+
+        <!-- Acá se dibujan las tarjetas de difusión -->
+        <div id="grillaDifusion" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ MASCOTAS PERDIDAS (AVISO EN PÁGINA PRINCIPAL) ============ -->
+    <section id="perdidos" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <div class="bg-terracota/15 border-2 border-terracota rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+          <div class="max-w-2xl">
+            <h2 class="font-titulo font-extrabold text-2xl sm:text-3xl">¿Se perdió tu mascota?</h2>
+            <p class="mt-2 text-lg leading-relaxed">
+              Podemos difundirla en nuestras redes. Escribinos con una foto, el nombre, la zona donde se perdió y la fecha.
+            </p>
+          </div>
+          <div class="flex flex-wrap gap-3 shrink-0">
+            <button type="button" id="btnVerPerdidos" class="btn btn-salvia">Ver mascotas buscadas</button>
+            <a data-wa="Hola rescataditos.tuc! Se perdió mi mascota y necesito ayuda para difundirla. Te paso los datos: nombre, zona, fecha y características."
+               target="_blank" rel="noopener noreferrer" class="btn btn-terracota">
+              Contactanos por WhatsApp
+            </a>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -177,6 +218,33 @@
       </div>
     </section>
   </main>
+
+  <!-- ============ APARTADO: MASCOTAS DESAPARECIDAS ============ -->
+  <section id="vistaPerdidos" class="hidden flex-1 pt-28 pb-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <button type="button" id="btnVolverPerdidos"
+              class="inline-flex items-center gap-2 font-titulo font-bold text-terracota-oscuro hover:underline mb-6">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver al inicio
+      </button>
+
+      <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Mascotas desaparecidas</h2>
+      <p class="mt-3 text-lg max-w-prose">
+        Si viste a alguno por tu barrio o tenés algún dato, avisanos por WhatsApp para contactar a su familia.
+      </p>
+
+      <!-- Filtros por especie -->
+      <div class="mt-8 flex flex-wrap gap-3" role="group" aria-label="Filtrar mascotas desaparecidas">
+        <button type="button" class="chip bg-white" data-filtro-perdidos="todos" aria-pressed="true">Todos</button>
+        <button type="button" class="chip bg-white" data-filtro-perdidos="perro" aria-pressed="false">Perros</button>
+        <button type="button" class="chip bg-white" data-filtro-perdidos="gato" aria-pressed="false">Gatos</button>
+      </div>
+
+      <div id="grillaPerdidos" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
+    </div>
+  </section>
 
   <!-- ============ FOOTER ============ -->
   <footer class="bg-marron text-crema py-10 px-4">
@@ -227,7 +295,53 @@
         foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=70' }
     ];
 
-    /* ========== FUNCIONES ========== */
+    /* ========== ANIMALES EN DIFUSIÓN ========== */
+    // EJEMPLO: borrar o reemplazar antes de publicar
+    const DIFUSION = [
+      {
+        nombre: 'Lola',
+        especie: 'perro',
+        zona: 'Barrio Sur',
+        necesita: 'Adopción',
+        urgente: true,
+        historia: 'La resguardó una vecina tras encontrarla desorientada. Tiene alrededor de 1 año, es súper dócil y se lleva bien con otros perros.',
+        foto: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=70'
+      },
+      {
+        nombre: 'Simón',
+        especie: 'gato',
+        zona: 'Villa Luján',
+        necesita: 'Tránsito',
+        urgente: false,
+        historia: 'Necesita un lugar seguro por unas semanas mientras termina su tratamiento veterinario y recupera peso.',
+        foto: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=600&q=70'
+      }
+    ];
+
+    /* ========== MASCOTAS PERDIDAS ========== */
+    // EJEMPLO: borrar o reemplazar antes de publicar
+    const MASCOTAS_PERDIDAS = [
+      {
+        nombre: 'Rocco',
+        especie: 'perro',
+        zona: 'Barrio Norte',
+        fecha: '2026-11-22',
+        descripcion: 'Mestizo mediano color marrón claro, tiene collar azul gastado y una manchita blanca en el pecho.',
+        estado: 'Se busca',
+        foto: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=70'
+      },
+      {
+        nombre: 'Nala',
+        especie: 'gato',
+        zona: 'Yerba Buena',
+        fecha: '2026-11-18',
+        descripcion: 'Gata carey de pelo corto, muy dócil. Llevaba chapita plateada con forma de corazón.',
+        estado: '¡Apareció!',
+        foto: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=600&q=70'
+      }
+    ];
+
+    /* ========== FUNCIONES GENERALES ========== */
     const $ = id => document.getElementById(id);
 
     // Arma el link de WhatsApp con el mensaje ya escrito (encodeURIComponent cuida los espacios y tildes)
@@ -238,7 +352,17 @@
       '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#F1E8DA"/><text x="200" y="185" font-size="100" text-anchor="middle">🐾</text></svg>');
     function fotoRespaldo(img) { img.onerror = null; img.src = FOTO_RESPALDO; }
 
-    // Devuelve el HTML de una tarjeta a partir de los datos de un animal
+    // Convierte 'AAAA-MM-DD' a 'dd/mm/aaaa' sin problemas de zona horaria
+    const formatearFecha = fechaISO => {
+      const [anio, mes, dia] = fechaISO.split('-').map(Number);
+      return new Date(anio, mes - 1, dia).toLocaleDateString('es-AR', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric'
+      });
+    };
+
+    /* ========== TARJETAS Y FILTROS: ADOPCIONES ========== */
     const tarjeta = a => `
       <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
         <div class="relative">
@@ -258,7 +382,6 @@
         </div>
       </article>`;
 
-    // Filtro: muestra las tarjetas que corresponden y marca el botón activo
     const botonesFiltro = document.querySelectorAll('[data-filtro]');
     function mostrar(filtro) {
       $('grilla').innerHTML = ANIMALES
@@ -274,11 +397,136 @@
     }
     botonesFiltro.forEach(b => b.addEventListener('click', () => mostrar(b.dataset.filtro)));
 
-    // Botón "Copiar alias": copia al portapapeles y cambia el texto por unos segundos
+    /* ========== TARJETAS Y FILTROS: DIFUSIÓN ========== */
+    const tarjetaDifusion = d => {
+      const mensajeWa = `Hola rescataditos.tuc! Vi a ${d.nombre} en la web (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`;
+      return `
+        <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
+          <div class="relative">
+            <img src="${d.foto}" alt="${d.nombre}, ${d.especie} en difusión en ${d.zona}" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
+            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+              <span class="bg-salvia-oscuro text-white text-xs font-bold px-3 py-1 rounded-full">${d.necesita}</span>
+              ${d.urgente ? '<span class="bg-[#C0532E] text-white text-xs font-bold px-3 py-1 rounded-full">Urgente</span>' : ''}
+            </div>
+            <span class="absolute bottom-3 left-3 bg-marron/85 text-crema text-xs font-bold px-2.5 py-0.5 rounded-full">En difusión</span>
+          </div>
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <div>
+              <h3 class="font-titulo font-extrabold text-xl">${d.nombre}</h3>
+              <p class="text-sm font-semibold text-marron/80 capitalize">${d.especie} · Zona ${d.zona}</p>
+            </div>
+            <p class="text-sm leading-relaxed flex-1">${d.historia}</p>
+            <a href="${linkWhatsApp(mensajeWa)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero ayudar a ${d.nombre}</a>
+          </div>
+        </article>`;
+    };
+
+    const botonesFiltroDifusion = document.querySelectorAll('[data-filtro-difusion]');
+    function mostrarDifusion(filtro) {
+      $('grillaDifusion').innerHTML = DIFUSION
+        .filter(d => {
+          if (filtro === 'todos') return true;
+          if (filtro === 'Adopción') return d.necesita === 'Adopción' || d.necesita === 'Adopción o tránsito';
+          if (filtro === 'Tránsito') return d.necesita === 'Tránsito' || d.necesita === 'Adopción o tránsito';
+          return true;
+        })
+        .map(tarjetaDifusion).join('');
+
+      botonesFiltroDifusion.forEach(b => {
+        const activo = b.dataset.filtroDifusion === filtro;
+        b.setAttribute('aria-pressed', activo);
+        b.classList.toggle('bg-salvia-oscuro', activo);
+        b.classList.toggle('text-white', activo);
+        b.classList.toggle('bg-white', !activo);
+      });
+    }
+    botonesFiltroDifusion.forEach(b => b.addEventListener('click', () => mostrarDifusion(b.dataset.filtroDifusion)));
+
+    /* ========== TARJETAS Y VISTA: MASCOTAS PERDIDAS ========== */
+    const tarjetaPerdido = m => {
+      const seBusca = m.estado === 'Se busca';
+      const mensajeWa = `Hola rescataditos.tuc! Tengo información sobre ${m.nombre}, la mascota que se perdió en ${m.zona}`;
+      const pieTarjeta = seBusca
+        ? `<a href="${linkWhatsApp(mensajeWa)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Tengo información</a>`
+        : `<p class="font-titulo font-extrabold text-salvia-oscuro text-center py-2">¡Volvió a casa!</p>`;
+
+      return `
+        <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
+          <div class="relative">
+            <img src="${m.foto}" alt="${m.nombre}, ${m.especie} perdido en ${m.zona}" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
+            <span class="absolute top-3 left-3 text-white text-sm font-bold px-3 py-1 rounded-full ${seBusca ? 'bg-[#C0532E]' : 'bg-salvia-oscuro'}">${m.estado}</span>
+          </div>
+          <div class="p-5 flex flex-col gap-3 flex-1">
+            <div>
+              <h3 class="font-titulo font-extrabold text-xl">${m.nombre}</h3>
+              <p class="text-sm font-semibold text-marron/80 capitalize">${m.especie} · Zona ${m.zona}</p>
+              <p class="text-xs text-marron/70 mt-0.5">Visto por última vez: ${formatearFecha(m.fecha)}</p>
+            </div>
+            <p class="text-sm leading-relaxed flex-1">${m.descripcion}</p>
+            ${pieTarjeta}
+          </div>
+        </article>`;
+    };
+
+    const botonesFiltroPerdidos = document.querySelectorAll('[data-filtro-perdidos]');
+    function mostrarPerdidos(filtro = 'todos') {
+      const contenedor = $('grillaPerdidos');
+      if (!contenedor) return;
+
+      botonesFiltroPerdidos.forEach(b => {
+        const activo = b.dataset.filtroPerdidos === filtro;
+        b.setAttribute('aria-pressed', activo);
+        b.classList.toggle('bg-salvia-oscuro', activo);
+        b.classList.toggle('text-white', activo);
+        b.classList.toggle('bg-white', !activo);
+      });
+
+      if (!MASCOTAS_PERDIDAS.length) {
+        contenedor.innerHTML = `<p class="col-span-full bg-white rounded-2xl p-6 border border-marron/10 text-center font-semibold">Por ahora no tenemos mascotas buscadas. ¡Eso es una buena noticia!</p>`;
+        return;
+      }
+
+      const filtradas = MASCOTAS_PERDIDAS
+        .filter(m => filtro === 'todos' || m.especie === filtro)
+        .sort((a, b) => (a.estado === 'Se busca' ? 0 : 1) - (b.estado === 'Se busca' ? 0 : 1));
+
+      contenedor.innerHTML = filtradas.length
+        ? filtradas.map(tarjetaPerdido).join('')
+        : `<p class="col-span-full bg-white rounded-2xl p-6 border border-marron/10 text-center font-semibold">No hay mascotas cargadas en esta categoría por el momento.</p>`;
+    }
+    botonesFiltroPerdidos.forEach(b => b.addEventListener('click', () => mostrarPerdidos(b.dataset.filtroPerdidos)));
+
+    function alternarVistaPerdidos(mostrarApartado, guardarHistorial = true) {
+      $('vistaPrincipal')?.classList.toggle('hidden', mostrarApartado);
+      $('vistaPerdidos')?.classList.toggle('hidden', !mostrarApartado);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      if (guardarHistorial) {
+        const nuevaUrl = mostrarApartado ? '#mascotas-perdidas' : window.location.pathname + window.location.search;
+        history.pushState({ vistaPerdidos: mostrarApartado }, '', nuevaUrl);
+      }
+    }
+
+    $('btnVerPerdidos')?.addEventListener('click', () => alternarVistaPerdidos(true));
+    $('btnVolverPerdidos')?.addEventListener('click', () => alternarVistaPerdidos(false));
+
+    window.addEventListener('popstate', () => {
+      alternarVistaPerdidos(window.location.hash === '#mascotas-perdidas', false);
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', () => {
+        if (!$('vistaPerdidos')?.classList.contains('hidden')) {
+          alternarVistaPerdidos(false);
+        }
+      });
+    });
+
+    /* ========== UTILIDADES: ALIAS Y MENÚ MÓVIL ========== */
     $('copiarAlias').addEventListener('click', async () => {
       try {
         await navigator.clipboard.writeText(ALIAS_MP);
-      } catch (e) { // plan B para navegadores o contextos que no permiten clipboard
+      } catch (e) {
         const t = document.createElement('textarea');
         t.value = ALIAS_MP; document.body.appendChild(t); t.select();
         document.execCommand('copy'); t.remove();
@@ -288,7 +536,6 @@
       setTimeout(() => btn.textContent = 'Copiar alias', 2500);
     });
 
-    // Menú hamburguesa (celular)
     const menu = $('menuMovil'), menuBtn = $('menuBtn');
     function alternarMenu(abrir) {
       menu.classList.toggle('hidden', !abrir);
@@ -303,6 +550,11 @@
     document.querySelectorAll('[data-wa]').forEach(a => a.href = linkWhatsApp(a.dataset.wa));
     $('alias').textContent = ALIAS_MP;
     mostrar('todos');
+    mostrarDifusion('todos');
+    mostrarPerdidos('todos');
+    if (window.location.hash === '#mascotas-perdidas') {
+      alternarVistaPerdidos(true, false);
+    }
   </script>
 </body>
 </html>
