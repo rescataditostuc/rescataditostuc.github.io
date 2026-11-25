@@ -54,6 +54,13 @@
     @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; transform: none !important; } }
   </style>
+  <!-- Foto de respaldo: si una foto no carga, se ve una huellita. Va acá arriba a propósito,
+       para que funcione aunque la foto falle antes de que cargue app.js -->
+  <script>
+    const FOTO_RESPALDO = 'data:image/svg+xml,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#F1E8DA"/><text x="200" y="185" font-size="100" text-anchor="middle">🐾</text></svg>');
+    function fotoRespaldo(img) { img.onerror = null; img.src = FOTO_RESPALDO; }
+  </script>
 </head>
 
 <body class="font-texto bg-crema text-marron antialiased min-h-screen flex flex-col">
@@ -121,8 +128,13 @@
     <!-- ============ ADOPCIONES ============ -->
     <section id="adopciones" class="py-16 px-4">
       <div class="max-w-6xl mx-auto">
-        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
-        <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+          <div>
+            <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
+            <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
+          </div>
+          <button type="button" id="btnVerAdoptados" class="btn btn-salvia shrink-0">Ver ya adoptados 🐾</button>
+        </div>
 
         <!-- Acá se dibujan las tarjetas (ver función "tarjeta" en el script) -->
         <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
@@ -226,6 +238,7 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- ============ APARTADO: MASCOTAS DESAPARECIDAS ============ -->
   <section id="vistaPerdidos" class="hidden flex-1 pt-28 pb-16 px-4">
@@ -254,6 +267,26 @@
     </div>
   </section>
 
+  <!-- ============ APARTADO: RESCATADITOS YA ADOPTADOS ============ -->
+  <section id="vistaAdoptados" class="hidden flex-1 pt-28 pb-16 px-4">
+    <div class="max-w-6xl mx-auto">
+      <button type="button" id="btnVolverAdoptados"
+              class="inline-flex items-center gap-2 font-titulo font-bold text-terracota-oscuro hover:underline mb-6">
+        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M19 12H5M12 19l-7-7 7-7"/>
+        </svg>
+        Volver al inicio
+      </button>
+
+      <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Finales felices</h2>
+      <p class="mt-3 text-lg max-w-prose">
+        Estos rescataditos ya encontraron su hogar definitivo. Cada adopción nos llena el alma y nos da fuerzas para seguir rescatando.
+      </p>
+
+      <div id="grillaAdoptados" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite"></div>
+    </div>
+  </section>
+
   <!-- ============ FOOTER ============ -->
   <footer class="bg-marron text-crema py-10 px-4">
     <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
@@ -275,312 +308,12 @@
     <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9l-5 4V5a1 1 0 0 1 1-1z"/></svg>
   </a>
 
-  <script>
-    /* ========== CONFIGURACIÓN: lo que más vas a editar ========== */
-    const CELU_VICTORIA = '5493816301226';   // TODO: número real, con código de país, sin + ni espacios
-    const CELU_CELESTE = '5493815166528';      
-    const CELU_ROCIO = '5493816752076';
-    const INSTAGRAM_URL = 'https://instagram.com/rescataditos.tuc';
-    const ALIAS_MP = 'RESCATADITOS.TUC';
-
-    /* ========== ANIMALES EN ADOPCIÓN ==========
-       EJEMPLO: reemplazar por animales reales. Para sumar uno, copiá un bloque { ... } entero
-       y cambiá los datos. */
-       const ANIMALES = [
-      {
-        nombre: 'Mishi',
-        especie: 'gato',
-        edad: '1 año aprox.',
-        estado: 'Urgente',
-        etiquetas: ['Castrada', 'Vacunada', 'Tranquila'],
-        historia: 'Rescatada de un baldío. Ronronea apenas la acariciás y se adapta fácil a vivir en departamento.',
-        foto: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=70',
-        telefono: CELU_CELESTE
-      },
-      {
-        nombre: 'Ramón',
-        especie: 'gato',
-        edad: '4 años aprox.',
-        estado: 'En adopción',
-        etiquetas: ['Castrado', 'Vacunado', 'Se lleva con gatos'],
-        historia: 'Pasó años en la calle y ahora busca un rincón calentito. Es sereno, cariñoso y muy agradecido.',
-        foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=70',
-        telefono: CELU_ROCIO
-      },
-      {
-        nombre: 'Olivia',
-        especie: 'gato',
-        edad: '5 meses aprox.',
-        estado: 'En adopción',
-        etiquetas: ['Vacunada', 'Desparasitada', 'Juguetona'],
-        historia: 'La encontramos solita bajo la lluvia. Ama jugar con pelotitas y dormir a upa.',
-        foto: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=600&q=70',
-        telefono: CELU_VICTORIA
-      },
-      {
-        nombre: 'Tito',
-        especie: 'gato',
-        edad: '2 años aprox.',
-        estado: 'Urgente',
-        etiquetas: ['Castrado', 'Vacunado', 'Mimoso'],
-        historia: 'Es súper compañero y tranquilo. Busca un hogar seguro con protecciones en ventanas o balcón.',
-        foto: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=600&q=70',
-        telefono: CELU_CELESTE
-      }
-    ];
-    
-    /* ========== ANIMALES EN DIFUSIÓN ========== */
-    // EJEMPLO: borrar o reemplazar antes de publicar
-    const DIFUSION = [
-      {
-        nombre: 'Lola',
-        especie: 'perro',
-        zona: 'Barrio Sur',
-        necesita: 'Adopción',
-        urgente: true,
-        historia: 'La resguardó una vecina tras encontrarla desorientada. Tiene alrededor de 1 año, es súper dócil y se lleva bien con otros perros.',
-        foto: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=70',
-        telefono: '5493816301226' // Número de la vecina que la resguarda
-      },
-      {
-        nombre: 'Simón',
-        especie: 'gato',
-        zona: 'Villa Luján',
-        necesita: 'Tránsito',
-        urgente: false,
-        historia: 'Necesita un lugar seguro por unas semanas mientras termina su tratamiento veterinario y recupera peso.',
-        foto: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=600&q=70',
-        telefono: '5493816301226' // Número de la vecina que la resguarda
-      }
-    ];
-
-    /* ========== MASCOTAS PERDIDAS ========== */
-    // EJEMPLO: borrar o reemplazar antes de publicar
-    const MASCOTAS_PERDIDAS = [
-      {
-        nombre: 'Rocco',
-        especie: 'perro',
-        zona: 'Barrio Norte',
-        fecha: '2026-11-22',
-        descripcion: 'Mestizo mediano color marrón claro, tiene collar azul gastado y una manchita blanca en el pecho.',
-        estado: 'Se busca',
-        foto: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=70',
-        telefono: '5493816301226' // Número de la persona que lo busca
-      },
-      {
-        nombre: 'Nala',
-        especie: 'gato',
-        zona: 'Yerba Buena',
-        fecha: '2026-11-18',
-        descripcion: 'Gata carey de pelo corto, muy dócil. Llevaba chapita plateada con forma de corazón.',
-        estado: '¡Apareció!',
-        foto: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=600&q=70'
-      }
-    ];
-
-    /* ========== FUNCIONES GENERALES ========== */
-    const $ = id => document.getElementById(id);
-
-    // Arma el link de WhatsApp con el mensaje ya escrito (encodeURIComponent cuida los espacios y tildes)
-    const linkWhatsApp = (texto, numero) => `https://wa.me/${numero || CELU_VICTORIA}?text=${encodeURIComponent(texto)}`;
-
-    // Si una foto no carga, mostramos un dibujo de huella en su lugar
-    const FOTO_RESPALDO = 'data:image/svg+xml,' + encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#F1E8DA"/><text x="200" y="185" font-size="100" text-anchor="middle">🐾</text></svg>');
-    function fotoRespaldo(img) { img.onerror = null; img.src = FOTO_RESPALDO; }
-
-    // Convierte 'AAAA-MM-DD' a 'dd/mm/aaaa' sin problemas de zona horaria
-    const formatearFecha = fechaISO => {
-      const [anio, mes, dia] = fechaISO.split('-').map(Number);
-      return new Date(anio, mes - 1, dia).toLocaleDateString('es-AR', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric'
-      });
-    };
-
-    /* ========== TARJETAS Y FILTROS: ADOPCIONES ========== */
-    const tarjeta = a => `
-      <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
-        <div class="relative">
-          <img src="${a.foto}" alt="${a.nombre}, ${a.especie} en adopción" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
-          <span class="absolute top-3 left-3 text-white text-sm font-bold px-3 py-1 rounded-full ${a.estado === 'Urgente' ? 'bg-[#C0532E]' : 'bg-salvia-oscuro'}">${a.estado}</span>
-        </div>
-        <div class="p-5 flex flex-col gap-3 flex-1">
-          <div>
-            <h3 class="font-titulo font-extrabold text-xl">${a.nombre}</h3>
-            <p class="text-sm text-marron/80">${a.edad}</p>
-          </div>
-          <ul class="flex flex-wrap gap-1.5">
-            ${a.etiquetas.map(e => `<li class="text-xs font-bold bg-crema border border-marron/10 rounded-full px-2.5 py-1">${e}</li>`).join('')}
-          </ul>
-          <p class="text-sm leading-relaxed flex-1">${a.historia}</p>
-          <a href="${linkWhatsApp('Hola rescataditos.tuc! Me interesa adoptar a ' + a.nombre, a.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero adoptarlo</a>
-        </div>
-      </article>`;
-
-      function mostrar() {
-      $('grilla').innerHTML = ANIMALES.map(tarjeta).join('');
-    }
-
-    /* ========== TARJETAS Y FILTROS: DIFUSIÓN ========== */
-    const tarjetaDifusion = d => {
-    const mensajeWa = `Hola! Vi a ${d.nombre} en la web de rescataditos.tuc (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`;
-      return `
-        <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
-          <div class="relative">
-            <img src="${d.foto}" alt="${d.nombre}, ${d.especie} en difusión en ${d.zona}" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
-            <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-              <span class="bg-salvia-oscuro text-white text-xs font-bold px-3 py-1 rounded-full">${d.necesita}</span>
-              ${d.urgente ? '<span class="bg-[#C0532E] text-white text-xs font-bold px-3 py-1 rounded-full">Urgente</span>' : ''}
-            </div>
-            <span class="absolute bottom-3 left-3 bg-marron/85 text-crema text-xs font-bold px-2.5 py-0.5 rounded-full">En difusión</span>
-          </div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <div>
-              <h3 class="font-titulo font-extrabold text-xl">${d.nombre}</h3>
-              <p class="text-sm font-semibold text-marron/80 capitalize">${d.especie} · Zona ${d.zona}</p>
-            </div>
-            <p class="text-sm leading-relaxed flex-1">${d.historia}</p>
-            <a href="${linkWhatsApp(mensajeWa, d.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero ayudar a ${d.nombre}</a>
-          </div>
-        </article>`;
-    };
-
-    const botonesFiltroDifusion = document.querySelectorAll('[data-filtro-difusion]');
-    function mostrarDifusion(filtro) {
-      $('grillaDifusion').innerHTML = DIFUSION
-        .filter(d => {
-          if (filtro === 'todos') return true;
-          if (filtro === 'Adopción') return d.necesita === 'Adopción' || d.necesita === 'Adopción o tránsito';
-          if (filtro === 'Tránsito') return d.necesita === 'Tránsito' || d.necesita === 'Adopción o tránsito';
-          return true;
-        })
-        .map(tarjetaDifusion).join('');
-
-      botonesFiltroDifusion.forEach(b => {
-        const activo = b.dataset.filtroDifusion === filtro;
-        b.setAttribute('aria-pressed', activo);
-        b.classList.toggle('bg-salvia-oscuro', activo);
-        b.classList.toggle('text-white', activo);
-        b.classList.toggle('bg-white', !activo);
-      });
-    }
-    botonesFiltroDifusion.forEach(b => b.addEventListener('click', () => mostrarDifusion(b.dataset.filtroDifusion)));
-
-    /* ========== TARJETAS Y VISTA: MASCOTAS PERDIDAS ========== */
-    const tarjetaPerdido = m => {
-      const seBusca = m.estado === 'Se busca';
-      const mensajeWa = `Hola! Vi a ${m.nombre} en la web de rescataditos.tuc y tengo información sobre la mascota que se perdió en ${m.zona}`;
-      const pieTarjeta = seBusca
-        ? `<a href="${linkWhatsApp(mensajeWa, m.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Tengo información</a>`
-        : `<p class="font-titulo font-extrabold text-salvia-oscuro text-center py-2">¡Volvió a casa!</p>`;
-
-      return `
-        <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
-          <div class="relative">
-            <img src="${m.foto}" alt="${m.nombre}, ${m.especie} perdido en ${m.zona}" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
-            <span class="absolute top-3 left-3 text-white text-sm font-bold px-3 py-1 rounded-full ${seBusca ? 'bg-[#C0532E]' : 'bg-salvia-oscuro'}">${m.estado}</span>
-          </div>
-          <div class="p-5 flex flex-col gap-3 flex-1">
-            <div>
-              <h3 class="font-titulo font-extrabold text-xl">${m.nombre}</h3>
-              <p class="text-sm font-semibold text-marron/80 capitalize">${m.especie} · Zona ${m.zona}</p>
-              <p class="text-xs text-marron/70 mt-0.5">Visto por última vez: ${formatearFecha(m.fecha)}</p>
-            </div>
-            <p class="text-sm leading-relaxed flex-1">${m.descripcion}</p>
-            ${pieTarjeta}
-          </div>
-        </article>`;
-    };
-
-    const botonesFiltroPerdidos = document.querySelectorAll('[data-filtro-perdidos]');
-    function mostrarPerdidos(filtro = 'todos') {
-      const contenedor = $('grillaPerdidos');
-      if (!contenedor) return;
-
-      botonesFiltroPerdidos.forEach(b => {
-        const activo = b.dataset.filtroPerdidos === filtro;
-        b.setAttribute('aria-pressed', activo);
-        b.classList.toggle('bg-salvia-oscuro', activo);
-        b.classList.toggle('text-white', activo);
-        b.classList.toggle('bg-white', !activo);
-      });
-
-      if (!MASCOTAS_PERDIDAS.length) {
-        contenedor.innerHTML = `<p class="col-span-full bg-white rounded-2xl p-6 border border-marron/10 text-center font-semibold">Por ahora no tenemos mascotas buscadas. ¡Eso es una buena noticia!</p>`;
-        return;
-      }
-
-      const filtradas = MASCOTAS_PERDIDAS
-        .filter(m => filtro === 'todos' || m.especie === filtro)
-        .sort((a, b) => (a.estado === 'Se busca' ? 0 : 1) - (b.estado === 'Se busca' ? 0 : 1));
-
-      contenedor.innerHTML = filtradas.length
-        ? filtradas.map(tarjetaPerdido).join('')
-        : `<p class="col-span-full bg-white rounded-2xl p-6 border border-marron/10 text-center font-semibold">No hay mascotas cargadas en esta categoría por el momento.</p>`;
-    }
-    botonesFiltroPerdidos.forEach(b => b.addEventListener('click', () => mostrarPerdidos(b.dataset.filtroPerdidos)));
-
-    function alternarVistaPerdidos(mostrarApartado, guardarHistorial = true) {
-      $('vistaPrincipal')?.classList.toggle('hidden', mostrarApartado);
-      $('vistaPerdidos')?.classList.toggle('hidden', !mostrarApartado);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-
-      if (guardarHistorial) {
-        const nuevaUrl = mostrarApartado ? '#mascotas-perdidas' : window.location.pathname + window.location.search;
-        history.pushState({ vistaPerdidos: mostrarApartado }, '', nuevaUrl);
-      }
-    }
-
-    $('btnVerPerdidos')?.addEventListener('click', () => alternarVistaPerdidos(true));
-    $('btnVolverPerdidos')?.addEventListener('click', () => alternarVistaPerdidos(false));
-
-    window.addEventListener('popstate', () => {
-      alternarVistaPerdidos(window.location.hash === '#mascotas-perdidas', false);
-    });
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-      link.addEventListener('click', () => {
-        if (!$('vistaPerdidos')?.classList.contains('hidden')) {
-          alternarVistaPerdidos(false);
-        }
-      });
-    });
-
-    /* ========== UTILIDADES: ALIAS Y MENÚ MÓVIL ========== */
-    $('copiarAlias').addEventListener('click', async () => {
-      try {
-        await navigator.clipboard.writeText(ALIAS_MP);
-      } catch (e) {
-        const t = document.createElement('textarea');
-        t.value = ALIAS_MP; document.body.appendChild(t); t.select();
-        document.execCommand('copy'); t.remove();
-      }
-      const btn = $('copiarAlias');
-      btn.textContent = '¡Alias copiado!';
-      setTimeout(() => btn.textContent = 'Copiar alias', 2500);
-    });
-
-    const menu = $('menuMovil'), menuBtn = $('menuBtn');
-    function alternarMenu(abrir) {
-      menu.classList.toggle('hidden', !abrir);
-      menu.classList.toggle('flex', abrir);
-      menuBtn.setAttribute('aria-expanded', abrir);
-    }
-    menuBtn.addEventListener('click', () => alternarMenu(menu.classList.contains('hidden')));
-    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => alternarMenu(false)));
-
-    /* ========== ARRANQUE ========== */
-    document.querySelectorAll('[data-ig]').forEach(a => a.href = INSTAGRAM_URL);
-    document.querySelectorAll('[data-wa]').forEach(a => a.href = linkWhatsApp(a.dataset.wa));
-    $('alias').textContent = ALIAS_MP;
-    mostrar('todos');
-    mostrarDifusion('todos');
-    mostrarPerdidos('todos');
-    if (window.location.hash === '#mascotas-perdidas') {
-      alternarVistaPerdidos(true, false);
-    }
-  </script>
+  <!-- Primero los datos y después las funciones (el orden importa). Cada archivo explica qué hace. -->
+  <script src="config.js"></script>
+  <script src="datos-adopciones.js"></script>
+  <script src="datos-difusion.js"></script>
+  <script src="datos-perdidas.js"></script>
+  <script src="datos-adoptados.js"></script>
+  <script src="app.js"></script>
 </body>
 </html>
