@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="es-AR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>rescataditos.tuc – Rescate y adopción responsable en Tucumán</title>
+  <meta name="description" content="Somos un grupo independiente  de voluntarias que se dedican al rescate y adopción responsable de animales de San Miguel de Tucumán. Conocé a nuestros perros y gatos en adopción, doná u ofrecé tu casa como tránsito para darle una oportunidad a un rescatadito.">
+
+  <!-- Open Graph: cómo se ve el link cuando lo compartís por WhatsApp o redes -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="rescataditos.tuc – Rescate y adopción responsable">
+  <meta property="og:description" content="Perros y gatos rescatados esperan una familia en San Miguel de Tucumán.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=70">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐾%3C/text%3E%3C/svg%3E">
+
+  <!-- Tipografías: Plus Jakarta Sans (títulos) y Nunito (texto) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind por CDN + nuestra paleta. Así podemos usar clases como bg-crema o text-marron -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: {
+          crema: '#FDFBF7',
+          marron: '#1E2A33',
+          // OJO: los nombres "terracota" y "marron" se mantienen, pero ahora son celeste y azul oscuro
+          terracota: { DEFAULT: '#75AADB', oscuro: '#2F6FA7' },
+          salvia: { DEFAULT: '#75AADB', oscuro: '#1E3A5F' }
+        },
+        fontFamily: {
+          titulo: ['"Plus Jakarta Sans"', 'sans-serif'],
+          texto: ['Nunito', 'sans-serif']
+        }
+      } }
+    }
+  </script>
+
+  <!-- Clases reutilizables: las escribimos una vez y las usamos en todos los botones -->
+  <style type="text/tailwindcss">
+    @layer components {
+      .btn { @apply inline-flex items-center justify-center rounded-full px-5 py-2.5 font-bold text-center transition hover:-translate-y-0.5 hover:brightness-95; }
+      .btn-terracota { @apply bg-terracota-oscuro text-white; }
+      .btn-salvia { @apply bg-salvia-oscuro text-white; }
+      .btn-borde { @apply bg-white text-marron border border-marron/20; }
+      .chip { @apply rounded-full px-5 py-2 font-bold border border-marron/15 transition; }
+    }
+    /* Foco visible para quien navega con teclado */
+    a:focus-visible, button:focus-visible { outline: 3px solid #46695D; outline-offset: 2px; }
+    /* Al tocar un link del menú, la navbar fija no tapa el título de la sección */
+    html { scroll-padding-top: 5rem; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; transform: none !important; } }
+  </style>
+</head>
+
+<body class="font-texto bg-crema text-marron antialiased">
+
+  <!-- Dibujo de la huella: se define una vez y se reutiliza con <use href="#huella"> -->
+  <svg class="absolute w-0 h-0" aria-hidden="true">
+    <symbol id="huella" viewBox="0 0 24 24">
+      <ellipse cx="12" cy="16.5" rx="5" ry="4"/><ellipse cx="5" cy="11" rx="2" ry="2.6"/>
+      <ellipse cx="9.5" cy="6.5" rx="2" ry="2.8"/><ellipse cx="14.5" cy="6.5" rx="2" ry="2.8"/>
+      <ellipse cx="19" cy="11" rx="2" ry="2.6"/>
+    </symbol>
+  </svg>
+
+  <!-- ============ NAVBAR FIJA ============ -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-crema/90 backdrop-blur border-b border-marron/10">
+    <nav class="max-w-6xl mx-auto h-16 px-4 flex items-center justify-between" aria-label="Principal">
+      <a href="#inicio" class="flex items-center gap-2 font-titulo font-extrabold text-lg">
+        <svg class="w-7 h-7 text-terracota" fill="currentColor" aria-hidden="true"><use href="#huella"/></svg>
+        rescataditos.tuc
+      </a>
+      <!-- Menú de escritorio -->
+      <div class="hidden md:flex items-center gap-7 font-bold">
+        <a href="#adopciones" class="hover:text-terracota-oscuro">Adopciones</a>
+        <a href="#transito" class="hover:text-terracota-oscuro">Tránsito</a>
+        <a href="#donar" class="hover:text-terracota-oscuro">Donar</a>
+        <a data-ig target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Instagram</a>
+      </div>
+      <!-- Botón hamburguesa (solo celular) -->
+      <button id="menuBtn" class="md:hidden p-2" aria-label="Abrir menú" aria-expanded="false" aria-controls="menuMovil">
+        <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </nav>
+    <!-- Menú de celular: arranca oculto y se muestra con JavaScript -->
+    <div id="menuMovil" class="hidden md:hidden flex-col gap-4 px-4 pb-5 pt-2 font-bold border-t border-marron/10">
+      <a href="#adopciones">Adopciones</a>
+      <a href="#transito">Tránsito</a>
+      <a href="#donar">Donar</a>
+      <a data-ig target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Instagram</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section id="inicio" class="pt-28 pb-16 px-4">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+        <div>
+          <h1 class="font-titulo font-extrabold text-4xl sm:text-5xl lg:text-6xl leading-[1.05] tracking-tight">
+            Cada patita merece un hogar que la espere
+          </h1>
+          <p class="mt-6 text-lg leading-relaxed max-w-prose">
+            Somos un grupo independiente de 3 chicas que rescatan, cuidan y buscan familia para perros y gatos de San Miguel de Tucumán. Trabajamos con mucho amor y responsabilidad. Creemos en la adopción responsable como un compromiso para toda la vida.
+          </p>
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a href="#adopciones" class="btn btn-terracota">Conocé a los rescataditos</a>
+            <a href="#ayuda" class="btn btn-borde">Quiero ayudar</a>
+          </div>
+        </div>
+        <!-- TODO: reemplazar por una foto propia (guardala en una carpeta img/ y poné src="img/hero.jpg") -->
+        <img src="img/inicio.jpg"
+             alt="logo rescataditos" onerror="fotoRespaldo(this)"
+             class="w-full aspect-[4/3] object-cover rounded-[4rem_1rem_4rem_1rem]">
+      </div>
+    </section>
+
+    <!-- ============ ADOPCIONES ============ -->
+    <section id="adopciones" class="py-16 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a los rescataditos</h2>
+        <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
+
+        <!-- Filtros: el JavaScript los conecta más abajo -->
+        <div class="mt-8 flex flex-wrap gap-3" role="group" aria-label="Filtrar por especie">
+          <button class="chip bg-white" data-filtro="todos" aria-pressed="true">Todos</button>
+          <button class="chip bg-white" data-filtro="perro" aria-pressed="false">Perros</button>
+          <button class="chip bg-white" data-filtro="gato" aria-pressed="false">Gatos</button>
+        </div>
+
+        <!-- Acá se dibujan las tarjetas (ver función "tarjeta" en el script) -->
+        <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <!-- ============ CÓMO AYUDAR ============ -->
+    <section id="ayuda" class="py-16 px-4 bg-salvia/10">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Cómo ayudar</h2>
+        <p class="mt-3 text-lg max-w-prose">No hace falta mucho: un granito de cada uno cambia vidas.</p>
+
+        <div class="mt-10 grid md:grid-cols-3 gap-6">
+          <!-- Columna 1: donaciones -->
+          <div id="donar" class="bg-white rounded-2xl p-6 border-2 border-terracota flex flex-col gap-4">
+            <h3 class="font-titulo font-extrabold text-xl">Donaciones económicas</h3>
+            <p>Cada aporte nos ayuda con la veterinaria, el alimento y los cuidados de los rescatados.</p>
+            <div class="bg-crema rounded-xl p-4 text-center border-2 border-dashed border-terracota">
+              <p class="text-sm font-bold">Alias de Mercado Pago</p>
+              <p id="alias" class="mt-1 font-titulo font-extrabold text-xl break-all select-all"></p>
+            </div>
+            <button id="copiarAlias" class="btn btn-terracota" aria-live="polite">Copiar alias</button>
+          </div>
+
+          <!-- Columna 2: hogar de tránsito -->
+          <div id="transito" class="bg-white rounded-2xl p-6 border border-marron/10 flex flex-col gap-4">
+            <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito</h3>
+            <p class="flex-1">Transitar es abrirle tu casa a un animal por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
+            <a data-wa="Hola rescataditos.tuc! Quiero postularme como hogar de tránsito" target="_blank" rel="noopener noreferrer" class="btn btn-salvia">Quiero ser tránsito</a>
+          </div>
+
+          <!-- Columna 3: insumos -->
+          <div class="bg-white rounded-2xl p-6 border border-marron/10 flex flex-col gap-4">
+            <h3 class="font-titulo font-extrabold text-xl">Insumos y alimento</h3>
+            <p>Lo que más necesitamos:</p>
+            <ul class="flex-1 space-y-2 font-semibold">
+              <li><span aria-hidden="true">🥣</span> Alimento balanceado</li>
+              <li><span aria-hidden="true">💧</span> Pipetas</li>
+              <li><span aria-hidden="true">🩹</span> Gasas</li>
+              <li><span aria-hidden="true">🧶</span> Mantas</li>
+            </ul>
+            <a data-wa="Hola rescataditos.tuc! Quiero donar insumos. ¿Cómo coordinamos?" target="_blank" rel="noopener noreferrer" class="btn btn-borde">Coordinar entrega</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="bg-marron text-crema py-10 px-4">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+      <div>
+        <p class="flex items-center justify-center md:justify-start gap-2 font-titulo font-extrabold text-lg">
+          <svg class="w-6 h-6 text-terracota" fill="currentColor" aria-hidden="true"><use href="#huella"/></svg>
+          rescataditos.tuc
+        </p>
+        <p class="mt-1">San Miguel de Tucumán, Argentina</p>
+      </div>
+      <a data-ig target="_blank" rel="noopener noreferrer" class="font-bold underline underline-offset-4">@rescataditos.tuc</a>
+      <p>Hecho con amor infinito🐾</p>
+    </div>
+  </footer>
+
+  <!-- Botón flotante de WhatsApp (abajo a la derecha) -->
+  <a data-wa="Hola rescataditos.tuc!" target="_blank" rel="noopener noreferrer" aria-label="Escribinos por WhatsApp"
+     class="fixed bottom-4 right-4 z-50 w-12 h-12 rounded-full bg-salvia-oscuro text-white flex items-center justify-center shadow-lg transition hover:-translate-y-0.5">
+    <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h16a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H9l-5 4V5a1 1 0 0 1 1-1z"/></svg>
+  </a>
+
+  <script>
+    /* ========== CONFIGURACIÓN: lo que más vas a editar ========== */
+    const WHATSAPP_NUMBER = '5493816301226';   // TODO: número real, con código de país, sin + ni espacios
+    const INSTAGRAM_URL = 'https://instagram.com/rescataditos.tuc';
+    const ALIAS_MP = 'RESCATADITOS.TUC';
+
+    /* ========== ANIMALES EN ADOPCIÓN ==========
+       EJEMPLO: reemplazar por animales reales. Para sumar uno, copiá un bloque { ... } entero
+       y cambiá los datos. "especie" tiene que ser 'perro' o 'gato' (así funciona el filtro). */
+    const ANIMALES = [
+      { nombre: 'Canela', especie: 'perro', edad: '2 años aprox.', estado: 'Urgente',
+        etiquetas: ['Castrada', 'Vacunada', 'Se lleva con perros'],
+        historia: 'La encontramos flaquita y asustada en una vereda. Hoy es pura ternura y solo le falta una familia.',
+        foto: 'https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=600&q=70' },
+      { nombre: 'Toto', especie: 'perro', edad: '6 meses aprox.', estado: 'En adopción',
+        etiquetas: ['Vacunado', 'Desparasitado', 'Juguetón'],
+        historia: 'Llegó con sus hermanitos dentro de una caja. Es curioso, ama correr y los mimos.',
+        foto: 'https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=600&q=70' },
+      { nombre: 'Mishi', especie: 'gato', edad: '1 año aprox.', estado: 'En adopción',
+        etiquetas: ['Castrada', 'Vacunada', 'Tranquila'],
+        historia: 'Rescatada de un baldío. Ronronea apenas la acariciás y se adapta fácil a vivir en departamento.',
+        foto: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=70' },
+      { nombre: 'Ramón', especie: 'gato', edad: '4 años aprox.', estado: 'Urgente',
+        etiquetas: ['Castrado', 'Vacunado', 'Se lleva con gatos'],
+        historia: 'Pasó años en la calle y ahora busca un rincón calentito. Es sereno, cariñoso y muy agradecido.',
+        foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=70' }
+    ];
+
+    /* ========== FUNCIONES ========== */
+    const $ = id => document.getElementById(id);
+
+    // Arma el link de WhatsApp con el mensaje ya escrito (encodeURIComponent cuida los espacios y tildes)
+    const linkWhatsApp = texto => `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(texto)}`;
+
+    // Si una foto no carga, mostramos un dibujo de huella en su lugar
+    const FOTO_RESPALDO = 'data:image/svg+xml,' + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#F1E8DA"/><text x="200" y="185" font-size="100" text-anchor="middle">🐾</text></svg>');
+    function fotoRespaldo(img) { img.onerror = null; img.src = FOTO_RESPALDO; }
+
+    // Devuelve el HTML de una tarjeta a partir de los datos de un animal
+    const tarjeta = a => `
+      <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
+        <div class="relative">
+          <img src="${a.foto}" alt="${a.nombre}, ${a.especie} en adopción" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
+          <span class="absolute top-3 left-3 text-white text-sm font-bold px-3 py-1 rounded-full ${a.estado === 'Urgente' ? 'bg-[#C0532E]' : 'bg-salvia-oscuro'}">${a.estado}</span>
+        </div>
+        <div class="p-5 flex flex-col gap-3 flex-1">
+          <div>
+            <h3 class="font-titulo font-extrabold text-xl">${a.nombre}</h3>
+            <p class="text-sm text-marron/80">${a.edad}</p>
+          </div>
+          <ul class="flex flex-wrap gap-1.5">
+            ${a.etiquetas.map(e => `<li class="text-xs font-bold bg-crema border border-marron/10 rounded-full px-2.5 py-1">${e}</li>`).join('')}
+          </ul>
+          <p class="text-sm leading-relaxed flex-1">${a.historia}</p>
+          <a href="${linkWhatsApp('Hola rescataditos.tuc! Me interesa adoptar a ' + a.nombre)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero adoptarlo</a>
+        </div>
+      </article>`;
+
+    // Filtro: muestra las tarjetas que corresponden y marca el botón activo
+    const botonesFiltro = document.querySelectorAll('[data-filtro]');
+    function mostrar(filtro) {
+      $('grilla').innerHTML = ANIMALES
+        .filter(a => filtro === 'todos' || a.especie === filtro)
+        .map(tarjeta).join('');
+      botonesFiltro.forEach(b => {
+        const activo = b.dataset.filtro === filtro;
+        b.setAttribute('aria-pressed', activo);
+        b.classList.toggle('bg-salvia-oscuro', activo);
+        b.classList.toggle('text-white', activo);
+        b.classList.toggle('bg-white', !activo);
+      });
+    }
+    botonesFiltro.forEach(b => b.addEventListener('click', () => mostrar(b.dataset.filtro)));
+
+    // Botón "Copiar alias": copia al portapapeles y cambia el texto por unos segundos
+    $('copiarAlias').addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(ALIAS_MP);
+      } catch (e) { // plan B para navegadores o contextos que no permiten clipboard
+        const t = document.createElement('textarea');
+        t.value = ALIAS_MP; document.body.appendChild(t); t.select();
+        document.execCommand('copy'); t.remove();
+      }
+      const btn = $('copiarAlias');
+      btn.textContent = '¡Alias copiado!';
+      setTimeout(() => btn.textContent = 'Copiar alias', 2500);
+    });
+
+    // Menú hamburguesa (celular)
+    const menu = $('menuMovil'), menuBtn = $('menuBtn');
+    function alternarMenu(abrir) {
+      menu.classList.toggle('hidden', !abrir);
+      menu.classList.toggle('flex', abrir);
+      menuBtn.setAttribute('aria-expanded', abrir);
+    }
+    menuBtn.addEventListener('click', () => alternarMenu(menu.classList.contains('hidden')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => alternarMenu(false)));
+
+    /* ========== ARRANQUE ========== */
+    document.querySelectorAll('[data-ig]').forEach(a => a.href = INSTAGRAM_URL);
+    document.querySelectorAll('[data-wa]').forEach(a => a.href = linkWhatsApp(a.dataset.wa));
+    $('alias').textContent = ALIAS_MP;
+    mostrar('todos');
+  </script>
+</body>
+</html>
