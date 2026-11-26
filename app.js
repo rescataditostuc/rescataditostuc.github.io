@@ -156,16 +156,30 @@ function mostrarAdopciones() {
   $('grilla').innerHTML = ANIMALES.map(tarjetaAdopcion).join('');
 }
 
-// filtro: 'todos', 'Adopción' o 'Tránsito'
-function mostrarDifusion(filtro = 'todos') {
-  marcarFiltro(document.querySelectorAll('[data-filtro-difusion]'), 'filtroDifusion', filtro);
-  $('grillaDifusion').innerHTML = DIFUSION
-    .filter(d => {
-      if (filtro === 'Adopción') return d.necesita === 'Adopción' || d.necesita === 'Adopción o tránsito';
-      if (filtro === 'Tránsito') return d.necesita === 'Tránsito' || d.necesita === 'Adopción o tránsito';
-      return true;
-    })
-    .map(tarjetaDifusion).join('');
+const botonesFiltroDifusion = document.querySelectorAll('[data-filtro-difusion]');
+function mostrarDifusion(filtro) {
+  const filtrados = DIFUSION.filter(d => {
+    const necesita = d.necesita.toLowerCase();
+    if (filtro === 'todos') return true;
+    if (filtro === 'Adopción') return necesita.includes('adopción');
+    if (filtro === 'Tránsito Solidario') return necesita.includes('tránsito');
+    if (filtro === 'Tránsito Solidario o Adopción') {
+      return necesita.includes('tránsito') && necesita.includes('adopción');
+    }
+    return true;
+  });
+
+  $('grillaDifusion').innerHTML = filtrados.length
+    ? filtrados.map(tarjetaDifusion).join('')
+    : `<p class="col-span-full bg-white rounded-2xl p-6 border border-marron/10 text-center font-semibold">No hay animales en esta categoría por el momento.</p>`;
+
+  botonesFiltroDifusion.forEach(b => {
+    const activo = b.dataset.filtroDifusion === filtro;
+    b.setAttribute('aria-pressed', activo);
+    b.classList.toggle('bg-salvia-oscuro', activo);
+    b.classList.toggle('text-white', activo);
+    b.classList.toggle('bg-white', !activo);
+  });
 }
 
 // filtro: 'todos', 'perro' o 'gato'. Las que "Se busca" aparecen primero.
