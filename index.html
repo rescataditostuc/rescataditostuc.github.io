@@ -125,21 +125,37 @@
       </div>
     </section>
 
-    <!-- ============ ADOPCIONES ============ -->
-    <section id="adopciones" class="py-16 px-4">
-      <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-          <div>
-            <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
-            <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
+        <!-- ============ ADOPCIONES ============ -->
+        <section id="adopciones" class="py-16 px-4">
+          <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+              <div>
+                <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
+                <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
+              </div>
+              <button type="button" id="btnVerAdoptados" class="btn btn-salvia shrink-0">Ver ya adoptados 🐾</button>
+            </div>
+    
+            <!-- Requisitos de adopción: desplegable nativo, sin JavaScript -->
+            <details class="group mt-8 max-w-3xl bg-white border border-marron/15 rounded-2xl">
+              <summary class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl cursor-pointer list-none font-titulo font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-salvia-oscuro [&::-webkit-details-marker]:hidden">
+                <span>Leé nuestros requisitos de adopción antes de escribirnos</span>
+                <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M6 9l6 6 6-6"/>
+                </svg>
+              </summary>
+              <ul class="mx-4 sm:mx-5 pt-4 pb-5 pl-5 border-t border-marron/10 list-disc marker:text-terracota-oscuro space-y-3 leading-relaxed">
+                <li><strong>Hogar seguro:</strong> Compromiso de contar con redes o protecciones en balcones, ventanas y patios abiertos para evitar escapes o caídas (excluyente en departamentos).</li>
+                <li><strong>Castración y salud:</strong> Compromiso de castrar al animal a partir de los 6 meses (si aún es cachorro) y mantener al día sus vacunas y desparasitaciones.</li>
+                <li><strong>Seguimiento responsable:</strong> Aceptar una charla previa y compartir fotos o videos durante los primeros meses para acompañar su adaptación.</li>
+                <li><strong>Zona de adopción:</strong> Exclusivo para San Miguel de Tucumán, Yerba Buena y alrededores cercanos, con traslado y entrega en el domicilio del adoptante.</li>
+              </ul>
+            </details>
+    
+            <!-- Acá se dibujan las tarjetas (ver función "tarjetaAdopcion" en app.js) -->
+            <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
           </div>
-          <button type="button" id="btnVerAdoptados" class="btn btn-salvia shrink-0">Ver ya adoptados 🐾</button>
-        </div>
-
-        <!-- Acá se dibujan las tarjetas (ver función "tarjeta" en el script) -->
-        <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
-      </div>
-    </section>
+        </section>
 
     <!-- ============ ANIMALES EN DIFUSIÓN ============ -->
     <section id="difusion" class="py-16 px-4">
@@ -200,12 +216,28 @@
           <button id="copiarAlias" class="btn btn-terracota" aria-live="polite">Copiar alias</button>
         </div>
 
-        <!-- Columna 2: hogar de tránsito -->
-        <div id="transito" class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
-          <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito</h3>
-          <p class="flex-1">Transitar es abrirle tu casa a un animal por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
-          <a data-wa="Hola rescataditos.tuc! Quiero postularme como hogar de tránsito" target="_blank" rel="noopener noreferrer" class="btn btn-salvia">Quiero ser tránsito</a>
-        </div>
+                <!-- Columna 2: hogar de tránsito -->
+                <div id="transito" class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
+                  <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito</h3>
+                  <p class="flex-1">Transitar es abrirle tu casa a un animal por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
+        
+                  <!-- Mini guía: desplegable nativo, sin JavaScript -->
+                  <details class="group bg-crema rounded-xl px-3.5 py-2.5 border border-marron/10 text-sm">
+                    <summary class="flex items-center justify-between gap-2 cursor-pointer list-none font-titulo font-bold rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-salvia-oscuro [&::-webkit-details-marker]:hidden">
+                      <span>¿Cómo funciona? (Lo que necesitás saber)</span>
+                      <svg class="w-4 h-4 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                        <path d="M6 9l6 6 6-6"/>
+                      </svg>
+                    </summary>
+                    <ul class="mt-3 pl-4 list-disc marker:text-terracota-oscuro space-y-2 leading-snug">
+                      <li><strong>Gastos cubiertos:</strong> Nosotras nos encargamos de la atención veterinaria, medicación, alimento e insumos si los necesitás.</li>
+                      <li><strong>Tu aporte:</strong> Solo ponés un espacio seguro y cerrado dentro de tu casa, paciencia y cariño mientras se recupera o espera familia.</li>
+                      <li><strong>Nosotras buscamos adoptante:</strong> Nos ocupamos de las fotos, la difusión en redes y el filtro de familias hasta su adopción definitiva.</li>
+                    </ul>
+                  </details>
+        
+                  <a data-wa="Hola rescataditos.tuc! Quiero postularme como hogar de tránsito" target="_blank" rel="noopener noreferrer" class="btn btn-salvia">Quiero ser tránsito</a>
+                </div>
 
         <!-- Columna 3: insumos -->
         <div class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
