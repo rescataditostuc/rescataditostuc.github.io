@@ -65,34 +65,54 @@ const tarjetaAdopcion = a => `
     </div>
   </article>`;
 
-const tarjetaDifusion = d => {
-  const mensajeWa = `Hola! Vi a ${d.nombre} en la web de rescataditos.tuc (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`;
-  return `
-  <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
-    <div class="relative">
-      <img src="${d.foto}" alt="${d.nombre}, ${d.especie} en difusión en ${d.zona}" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
-      <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
-        <span class="bg-salvia-oscuro text-white text-xs font-bold px-3 py-1 rounded-full">${d.necesita}</span>
-        ${d.urgente ? '<span class="bg-[#C0532E] text-white text-xs font-bold px-3 py-1 rounded-full">Urgente</span>' : ''}
+  const tarjetaDifusion = d => {
+    const nombre = d.nombre || '';   // si no tiene nombre, queda vacío
+    const mensajeWa = nombre
+      ? `Hola! Vi a ${nombre} en la web de rescataditos.tuc (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`
+      : `Hola! Vi en la web de rescataditos.tuc a un ${d.especie} de la zona ${d.zona} (necesita ${d.necesita.toLowerCase()}) y quiero ayudar. ¿Me pasan más info?`;
+    return `
+    <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
+      <div class="relative">
+        <img src="${d.foto}" alt="${nombre || 'Animal sin nombre'}, ${d.especie} en difusión en ${d.zona}" loading="lazy" onerror="fotoRespaldo(this)" class="w-full h-56 object-cover">
+        <div class="absolute top-3 left-3 flex flex-wrap gap-1.5">
+          <span class="bg-salvia-oscuro text-white text-xs font-bold px-3 py-1 rounded-full">${d.necesita}</span>
+          ${d.urgente ? '<span class="bg-[#C0532E] text-white text-xs font-bold px-3 py-1 rounded-full">Urgente</span>' : ''}
+        </div>
+        <span class="absolute bottom-3 left-3 bg-marron/85 text-crema text-xs font-bold px-2.5 py-0.5 rounded-full">En difusión</span>
       </div>
-      <span class="absolute bottom-3 left-3 bg-marron/85 text-crema text-xs font-bold px-2.5 py-0.5 rounded-full">En difusión</span>
-    </div>
-    <div class="p-5 flex flex-col gap-3 flex-1">
-      <div>
-        <h3 class="font-titulo font-extrabold text-xl">${d.nombre}</h3>
-        <p class="text-sm font-semibold text-marron/80 capitalize">${d.especie} · Zona ${d.zona}</p>
+      <div class="p-5 flex flex-col gap-3 flex-1">
+        <div>
+          <h3 class="font-titulo font-extrabold text-xl">${nombre || 'Aún sin nombre'}</h3>
+          <p class="text-sm font-semibold text-marron/80"><span class="capitalize">${d.especie}</span> · Zona ${d.zona}</p>
+        </div>
+        <p class="text-sm leading-relaxed flex-1">${d.historia}</p>
+        <a href="${linkWhatsApp(mensajeWa, d.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">${nombre ? 'Quiero ayudar a ' + nombre : 'Quiero ayudar'}</a>
+         
+        <button type="button"
+        onclick="compartirTarjeta(this)"
+        data-hash="#difusion"
+        data-titulo="${d.nombre} necesita ${d.necesita.toLowerCase()} – rescataditos.tuc"
+        data-texto="🐾 ¡Ayudanos a difundir! ${d.nombre} (${d.especie}, zona ${d.zona}) necesita ${d.necesita.toLowerCase()}. Mirá su historia y contacto acá:"
+        class="btn btn-borde text-sm py-2">
+  Compartir caso 📲
+</button>
       </div>
-      <p class="text-sm leading-relaxed flex-1">${d.historia}</p>
-      <a href="${linkWhatsApp(mensajeWa, d.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero ayudar a ${d.nombre}</a>
-    </div>
-  </article>`;
+    </article>`;
 };
 
 const tarjetaPerdida = m => {
   const seBusca = m.estado === 'Se busca';
   const mensajeWa = `Hola! Vi a ${m.nombre} en la web de rescataditos.tuc y tengo información sobre la mascota que se perdió en ${m.zona}`;
   const pieTarjeta = seBusca
-    ? `<a href="${linkWhatsApp(mensajeWa, m.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Tengo información</a>`
+    ? `<a href="${linkWhatsApp(mensajeWa, m.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Tengo información</a>
+       <button type="button"
+               onclick="compartirTarjeta(this)"
+               data-hash="#mascotas-perdidas"
+               data-titulo="Se busca a ${m.nombre} (${m.zona}) – rescataditos.tuc"
+               data-texto="🚨 ¡Mascota perdida en ${m.zona}! Ayudanos a difundir para que ${m.nombre} vuelva a casa. Mirá su foto y datos acá:"
+               class="btn btn-borde text-sm py-2">
+         Difundir búsqueda 📲
+       </button>`
     : `<p class="font-titulo font-extrabold text-salvia-oscuro text-center py-2">¡Volvió a casa!</p>`;
   return `
   <article class="bg-white rounded-[2rem] overflow-hidden border border-marron/10 flex flex-col">
@@ -103,7 +123,7 @@ const tarjetaPerdida = m => {
     <div class="p-5 flex flex-col gap-3 flex-1">
       <div>
         <h3 class="font-titulo font-extrabold text-xl">${m.nombre}</h3>
-        <p class="text-sm font-semibold text-marron/80 capitalize">${m.especie} · Zona ${m.zona}</p>
+        <p class="text-sm font-semibold text-marron/80"><span class="capitalize">${m.especie}</span> · Zona ${m.zona}</p>
         <p class="text-xs text-marron/70 mt-0.5">Visto por última vez: ${formatearFecha(m.fecha)}</p>
       </div>
       <p class="text-sm leading-relaxed flex-1">${m.descripcion}</p>
@@ -283,3 +303,48 @@ function iniciar() {
 }
 
 iniciar();
+
+/* ========== COMPARTIR TARJETA (CELULAR Y PC) ========== */
+async function compartirTarjeta(btn) {
+  const titulo = btn.dataset.titulo || 'rescataditos.tuc';
+  const texto = btn.dataset.texto || 'Conocé a nuestros rescataditos en San Miguel de Tucumán:';
+  const esWeb = window.location.protocol.startsWith('http');
+  const baseUrl = esWeb
+    ? window.location.origin + window.location.pathname
+    : 'https://rescataditostuc.github.io/';
+  const url = baseUrl + (btn.dataset.hash || '');
+
+  if (esWeb && navigator.share) {
+    try {
+      await navigator.share({ title: titulo, text: texto, url });
+      return;
+    } catch (e) {
+      if (e.name === 'AbortError') return;
+    }
+  }
+
+  const mensajeCompleto = `${texto} ${url}`;
+  let copiado = false;
+
+  if (esWeb && navigator.clipboard?.writeText) {
+    try {
+      await navigator.clipboard.writeText(mensajeCompleto);
+      copiado = true;
+    } catch (e) {}
+  }
+
+  if (!copiado) {
+    const t = document.createElement('textarea');
+    t.value = mensajeCompleto;
+    t.style.position = 'fixed';
+    t.style.opacity = '0';
+    document.body.appendChild(t);
+    t.select();
+    document.execCommand('copy');
+    t.remove();
+  }
+
+  const textoOriginal = btn.textContent;
+  btn.textContent = '¡Link copiado!';
+  setTimeout(() => (btn.textContent = textoOriginal), 2500);
+}

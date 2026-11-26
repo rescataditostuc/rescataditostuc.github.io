@@ -21,43 +21,53 @@
 
 const ANIMALES = [
   {
-    nombre: 'Mishi',
+    nombre: 'Haniel',
     especie: 'gato',
-    edad: '1 año aprox.',
-    estado: 'Urgente',
-    etiquetas: ['Castrada', 'Vacunada', 'Tranquila'],
-    historia: 'Rescatada de un baldío. Ronronea apenas la acariciás y se adapta fácil a vivir en departamento.',
-    foto: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=600&q=70',
-    telefono: CELU_CELESTE
-  },
-  {
-    nombre: 'Ramón',
-    especie: 'gato',
-    edad: '4 años aprox.',
+    edad: '2 meses.',
     estado: 'En adopción',
-    etiquetas: ['Castrado', 'Vacunado', 'Se lleva con gatos'],
-    historia: 'Pasó años en la calle y ahora busca un rincón calentito. Es sereno, cariñoso y muy agradecido.',
-    foto: 'https://images.unsplash.com/photo-1574158622682-e40e69881006?auto=format&fit=crop&w=600&q=70',
+    etiquetas: ['Hembra', 'Desparasitada', 'Tímida', 'Tranquila'],
+    historia: 'Es una gatita un poco tímida, tranquila y muy pero muy dulce. Le gusta dormir acurrucada.',
+    foto: 'rescatados/adopcion/haniel.jpeg',
     telefono: CELU_ROCIO
   },
   {
-    nombre: 'Olivia',
+    nombre: 'Safarin',
     especie: 'gato',
-    edad: '5 meses aprox.',
+    edad: '2 meses.',
     estado: 'En adopción',
-    etiquetas: ['Vacunada', 'Desparasitada', 'Juguetona'],
-    historia: 'La encontramos solita bajo la lluvia. Ama jugar con pelotitas y dormir a upa.',
-    foto: 'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=600&q=70',
-    telefono: CELU_VICTORIA
+    etiquetas: ['Macho', 'Desparasitado', 'Juguetón', 'Mimoso'],
+    historia: 'Gatito muy mimoso y juguetón, ronronea mucho y le encana recibir cariño.',
+    foto: 'rescatados/adopcion/safarin.jpeg',
+    telefono: CELU_ROCIO
   },
   {
-    nombre: 'Tito',
+    nombre: 'Raziel',
     especie: 'gato',
-    edad: '2 años aprox.',
-    estado: 'Urgente',
-    etiquetas: ['Castrado', 'Vacunado', 'Mimoso'],
-    historia: 'Es súper compañero y tranquilo. Busca un hogar seguro con protecciones en ventanas o balcón.',
-    foto: 'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=600&q=70',
-    telefono: CELU_CELESTE
+    edad: '2 meses.',
+    estado: 'En adopción',
+    etiquetas: ['Hembra', 'Desparasitada', 'Juguetona', 'Mimosa', 'Tranquila'],
+    historia: 'Ella es mimosa y juguetona pero también tiene su lado tranquilo. Es un amor y le encanta dormir abrazada',
+    foto: 'rescatados/adopcion/raziel.jpeg',
+    telefono: CELU_ROCIO
+  },
+  {
+    nombre: 'Azrael',
+    especie: 'gato',
+    edad: '2 meses.',
+    estado: 'En adopción',
+    etiquetas: ['Macho', 'Desparasitado', 'Juguetón', 'Curioso', 'Tímido'],
+    historia: 'Es un pequeño juguetón y curioso. Al principio es un poco tímido, pero entra en confianza y deja ver toda su dulzura.',
+    foto: 'rescatados/adopcion/azrael.jpeg',
+    telefono: CELU_ROCIO
+  },
+  {
+    nombre: 'Querubina',
+    especie: 'gato',
+    edad: '2 meses.',
+    estado: 'En adopción',
+    etiquetas: ['Hembra', 'Desparasitada', 'Mimosa', 'Buena'],
+    historia: 'Es una gatita muy mimosa y buena.Tiene una dulzura especial y disfruta mucho de recibir cariño.',
+    foto: 'rescatados/adopcion/querubina.jpeg',
+    telefono: CELU_ROCIO
   }
 ];

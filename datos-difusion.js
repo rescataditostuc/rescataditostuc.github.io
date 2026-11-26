@@ -21,23 +21,53 @@
 
 const DIFUSION = [
   {
-    nombre: 'Lola',
+    nombre: '',
     especie: 'perro',
-    zona: 'Barrio Sur',
-    necesita: 'Adopción',
+    zona: 'Villa Alem',
+    necesita: 'Tránsito Solidario o Adopción',
     urgente: true,
-    historia: 'La resguardó una vecina tras encontrarla desorientada. Tiene alrededor de 1 año, es súper dócil y se lleva bien con otros perros.',
-    foto: 'https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=600&q=70',
+    historia: 'Perrito lleva años viviendo en Jujuy y Fortunata García, se encunetra en muy mal estado.',
+    foto: 'hogar/transito/perritojujuy.png',
     telefono: '5493816301226'
   },
   {
-    nombre: 'Simón',
-    especie: 'gato',
-    zona: 'Villa Luján',
-    necesita: 'Tránsito',
+    nombre: 'Pedro',
+    especie: 'perro',
+    zona: 'San Miguel de Tucumán',
+    necesita: 'Adopción',
     urgente: false,
-    historia: 'Necesita un lugar seguro por unas semanas mientras termina su tratamiento veterinario y recupera peso.',
-    foto: 'https://images.unsplash.com/photo-1526336024174-e58f5cdd8e13?auto=format&fit=crop&w=600&q=70',
-    telefono: '5493816301226'
+    historia: 'Perrito de 4-5 años, super cariñoso, dócil, compañero y social.',
+    foto: 'hogar/adopcion/pedro.jpeg',
+    telefono: '5493814429196'
+  },
+  {
+    nombre: 'Pipa',
+    especie: 'gato',
+    zona: 'San Miguel de Tucumán',
+    necesita: 'Adopción',
+    urgente: false,
+    historia: 'Gatita, un año aproximadamente, desparasitada y próxima a castrar. Es super buena y tranquila',
+    foto: 'hogar/adopcion/pipa.jpeg',
+    telefono: '5493816471513'
+  },
+  {
+    nombre: 'Umma',
+    especie: 'perro',
+    zona: 'San Miguel de Tucumán',
+    necesita: 'Adopción',
+    urgente: false,
+    historia: 'Perrita, aproximadamente 3 años, muy mimosa, compañera, dependiente y sociable. Atravezó un tumor pero patitas.librestuc pagaron su tratamiento y se encuentra ya super sana y estable.',
+    foto: 'hogar/adopcion/umma.jpeg',
+    telefono: '5493816643292'
+  },
+  {
+    nombre: 'Mila',
+    especie: 'gato',
+    zona: 'San Miguel de Tucumán',
+    necesita: 'Adopción',
+    urgente: false,
+    historia: 'Gatita, aproximadamente un mes y medio. Come solita, es muy buena y dócil.',
+    foto: 'hogar/adopcion/mila.jpeg',
+    telefono: '5493816471513'
   }
 ];

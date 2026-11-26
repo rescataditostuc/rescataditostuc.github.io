@@ -8,10 +8,10 @@
 
   <!-- Open Graph: cómo se ve el link cuando lo compartís por WhatsApp o redes -->
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://rescataditostuc.github.io/">
   <meta property="og:title" content="rescataditos.tuc – Rescate y adopción responsable">
   <meta property="og:description" content="Perros y gatos rescatados esperan una familia en San Miguel de Tucumán.">
-  <meta property="og:image" content="https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&w=1200&q=70">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E🐾%3C/text%3E%3C/svg%3E">
+  <meta property="og:image" content="https://rescataditostuc.github.io/img/inicio.jpg">
 
   <!-- Tipografías: Plus Jakarta Sans (títulos) y Nunito (texto) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -125,32 +125,42 @@
       </div>
     </section>
 
-        <!-- ============ ADOPCIONES ============ -->
-        <section id="adopciones" class="py-16 px-4">
-          <div class="max-w-6xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
-              <div>
-                <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
-                <p class="mt-3 text-lg max-w-prose">Cada uno tiene su historia y está esperando a su familia. Si te enamoraste de alguno, escribinos.</p>
-              </div>
-              <button type="button" id="btnVerAdoptados" class="btn btn-salvia shrink-0">Ver ya adoptados 🐾</button>
-            </div>
-    
-            <!-- Requisitos de adopción: desplegable nativo, sin JavaScript -->
-            <details class="group mt-8 max-w-3xl bg-white border border-marron/15 rounded-2xl">
-              <summary class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl cursor-pointer list-none font-titulo font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-salvia-oscuro [&::-webkit-details-marker]:hidden">
-                <span>Leé nuestros requisitos de adopción antes de escribirnos</span>
-                <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M6 9l6 6 6-6"/>
-                </svg>
-              </summary>
-              <ul class="mx-4 sm:mx-5 pt-4 pb-5 pl-5 border-t border-marron/10 list-disc marker:text-terracota-oscuro space-y-3 leading-relaxed">
-                <li><strong>Hogar seguro:</strong> Compromiso de contar con redes o protecciones en balcones, ventanas y patios abiertos para evitar escapes o caídas (excluyente en departamentos).</li>
-                <li><strong>Castración y salud:</strong> Compromiso de castrar al animal a partir de los 6 meses (si aún es cachorro) y mantener al día sus vacunas y desparasitaciones.</li>
-                <li><strong>Seguimiento responsable:</strong> Aceptar una charla previa y compartir fotos o videos durante los primeros meses para acompañar su adaptación.</li>
-                <li><strong>Zona de adopción:</strong> Exclusivo para San Miguel de Tucumán, Yerba Buena y alrededores cercanos, con traslado y entrega en el domicilio del adoptante.</li>
-              </ul>
-            </details>
+    <!-- ============ ADOPCIONES ============ -->
+    <section id="adopciones" class="py-8 px-4">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Conocé a nuestros rescataditos</h2>
+        <p class="mt-3 text-lg max-w-prose">Esta es nuestra camarada de gatitos que con apenas 20 días de vida, los iban a tirar. Decidimos rescatarlos y, aunque llegaron muy débiles y con pocas posibilidades de sobrevivir, hoy están sanos y fuertes. Por todo lo que tuvieron que atravesar, decidimos llamar a esta camada con nombres de ángeles y arcángeles. Si te enamoraste de alguno, escribinos. 🩵</p>
+
+        <!-- Fila única arriba de las tarjetas: requisitos + botón -->
+      <div class="mt-8 flex flex-col md:flex-row md:items-start justify-between gap-4">
+        <details class="group flex-1 bg-white border border-marron/15 rounded-2xl">
+          <summary class="flex items-center justify-between gap-4 p-4 sm:p-5 rounded-2xl cursor-pointer list-none font-titulo font-bold focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-salvia-oscuro [&::-webkit-details-marker]:hidden">
+            <span>Leé nuestros requisitos de adopción antes de escribirnos</span>
+            <svg class="w-5 h-5 shrink-0 transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M6 9l6 6 6-6"/>
+            </svg>
+          </summary>
+          <ul class="mx-4 sm:mx-5 pt-4 pb-5 pl-5 border-t border-marron/10 list-disc marker:text-terracota-oscuro space-y-3 leading-relaxed">
+            <li><strong>Hogar seguro:</strong> Compromiso de contar con redes o protecciones en balcones, ventanas y patios abiertos para evitar escapes o caídas (excluyente en departamentos).</li>
+            <li><strong>Castración y salud:</strong> Compromiso de castrar al animal a partir de los 6 meses (si aún es cachorro) y mantener al día sus vacunas y desparasitaciones.</li>
+            <li><strong>Seguimiento responsable:</strong> Aceptar una charla previa y compartir fotos o videos durante los primeros meses para acompañar su adaptación.</li>
+            <li><strong>Tratamiento específico:</strong> Por orden veterinaria, toda esta camarada por su condición debe tener buena alimentación (EJ: Old Prince).</li>
+            <li><strong>Zona de adopción:</strong> Exclusivo para San Miguel de Tucumán, Yerba Buena y alrededores cercanos, con traslado y entrega en el domicilio del adoptante.</li>
+          </ul>
+        </details>
+
+        <button type="button" id="btnVerAdoptados" class="btn btn-salvia shrink-0 md:mt-2.5">Ver ya adoptados 🐾</button>
+      </div>
+
+      <!-- Acá se dibujan las tarjetas (ver función "tarjetaAdopcion" en app.js) -->
+      <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
+      </div>
+    </section>
+
+            <!-- Acá se dibujan las tarjetas (ver función "tarjetaAdopcion" en app.js) -->
+            <div id="grilla" class="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
+          </div>
+        </section>
     
             <!-- Acá se dibujan las tarjetas (ver función "tarjetaAdopcion" en app.js) -->
             <div id="grilla" class="mt-8 grid sm:grid-cols-2 lg:grid-cols-4 gap-6" aria-live="polite"></div>
@@ -158,7 +168,7 @@
         </section>
 
     <!-- ============ ANIMALES EN DIFUSIÓN ============ -->
-    <section id="difusion" class="py-16 px-4">
+    <section id="difusion" class="py-8 px-4">
       <div class="max-w-6xl mx-auto">
         <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Necesitan hogar</h2>
         <p class="mt-3 text-lg max-w-prose">
@@ -169,7 +179,8 @@
         <div class="mt-8 flex flex-wrap gap-3" role="group" aria-label="Filtrar animales en difusión">
           <button class="chip bg-white" data-filtro-difusion="todos" aria-pressed="true">Todos</button>
           <button class="chip bg-white" data-filtro-difusion="Adopción" aria-pressed="false">Adopción</button>
-          <button class="chip bg-white" data-filtro-difusion="Tránsito" aria-pressed="false">Tránsito</button>
+          <button class="chip bg-white" data-filtro-difusion="Tránsito Solidario" aria-pressed="false">Tránsito Solidario</button>
+          <button class="chip bg-white" data-filtro-difusion="Tránsito Solidario o Adopción" aria-pressed="false">Tránsito Solidario o Adopción</button>
         </div>
 
         <!-- Acá se dibujan las tarjetas de difusión -->
@@ -178,7 +189,7 @@
     </section>
 
     <!-- ============ MASCOTAS PERDIDAS (AVISO EN PÁGINA PRINCIPAL) ============ -->
-    <section id="perdidos" class="py-16 px-4">
+    <section id="perdidos" class="py-8 px-4">
       <div class="max-w-6xl mx-auto">
         <div class="bg-terracota/15 border-2 border-terracota rounded-3xl p-6 sm:p-8 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
           <div class="max-w-2xl">
@@ -199,7 +210,7 @@
     </section>
 
    <!-- ============ CÓMO AYUDAR ============ -->
-   <section id="ayuda" class="py-16 px-4 sm:px-8 lg:px-12 bg-salvia/10">
+   <section id="ayuda" class="py-8 px-4 sm:px-8 lg:px-12 bg-salvia/10">
     <div class="max-w-[92rem] mx-auto">
       <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Cómo ayudar</h2>
       <p class="mt-3 text-lg max-w-prose">No hace falta mucho: un granito de cada uno cambia vidas.</p>
@@ -218,8 +229,8 @@
 
                 <!-- Columna 2: hogar de tránsito -->
                 <div id="transito" class="bg-white rounded-2xl p-5 border border-marron/10 flex flex-col gap-4">
-                  <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito</h3>
-                  <p class="flex-1">Transitar es abrirle tu casa a un animal por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
+                  <h3 class="font-titulo font-extrabold text-xl">Hogar de tránsito para rescataditos</h3>
+                  <p class="flex-1">Transitar es abrirle tu casa a un gatito por un tiempo, hasta que encuentre su familia definitiva. Le das cariño, rutina y seguridad. No hace falta ser experto: alcanza con ganas y un poco de espacio. Los detalles los charlamos con vos.</p>
         
                   <!-- Mini guía: desplegable nativo, sin JavaScript -->
                   <details class="group bg-crema rounded-xl px-3.5 py-2.5 border border-marron/10 text-sm">
@@ -285,7 +296,7 @@
 
       <h2 class="font-titulo font-extrabold text-3xl sm:text-4xl">Mascotas desaparecidas</h2>
       <p class="mt-3 text-lg max-w-prose">
-        Si viste a alguno por tu barrio o tenés algún dato, avisanos por WhatsApp para contactar a su familia.
+        Si viste a alguno por tu barrio o tenés algún dato, tocá "tengo información" y contactate con su familia.
       </p>
 
       <!-- Filtros por especie -->

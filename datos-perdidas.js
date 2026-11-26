@@ -23,22 +23,14 @@
 
 const MASCOTAS_PERDIDAS = [
   {
-    nombre: 'Rocco',
-    especie: 'perro',
-    zona: 'Barrio Norte',
-    fecha: '2026-11-22',
-    descripcion: 'Mestizo mediano color marrón claro, tiene collar azul gastado y una manchita blanca en el pecho.',
-    estado: 'Se busca',
-    foto: 'https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=600&q=70',
-    telefono: '5493816301226'
-  },
-  {
-    nombre: 'Nala',
+    nombre: 'Preco',
     especie: 'gato',
-    zona: 'Yerba Buena',
-    fecha: '2026-11-18',
-    descripcion: 'Gata carey de pelo corto, muy dócil. Llevaba chapita plateada con forma de corazón.',
-    estado: '¡Apareció!',
-    foto: 'https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=600&q=70'
+    zona: 'LAMADRID 2913.',
+    fecha: '2026-11-24',
+    descripcion: 'Es naranja, responde al nombre de Preco.',
+    estado: 'Se busca',
+    foto: 'perdidos/preco.png',
+    telefono: '5493814157809'
   }
-];
+]
+
