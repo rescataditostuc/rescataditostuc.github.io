@@ -77,7 +77,7 @@ const DIFUSION = [
     necesita: 'Adopción',
     urgente: false,
     historia: 'Machito, 2 meses. Nació el 26 de septiembre. Ya sabe usar las piedritas, es súper mimoso y juguetón. Adopción con seguimiento y compromiso de castración.',
-    foto: 'hogar/adopcion/michigris.jpeg',
+    foto: 'hogar/adopcion/michigris.png',
     telefono: '5493812029089'
   }
 ];
