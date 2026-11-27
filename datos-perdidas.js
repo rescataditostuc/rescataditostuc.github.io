@@ -31,6 +31,16 @@ const MASCOTAS_PERDIDAS = [
     estado: 'Se busca',
     foto: 'perdidos/preco.png',
     telefono: '5493814157809'
+  },
+  {
+    nombre: 'Sheldon',
+    especie: 'gato',
+    zona: 'NORTE ALTURA SARMIENTO AL 100.',
+    fecha: '2026-11-23',
+    descripcion: 'Es es gris con blanco, .',
+    estado: 'Se busca',
+    foto: 'perdidos/michi.jpg',
+    telefono: '5493816427769'
   }
 ]
 
