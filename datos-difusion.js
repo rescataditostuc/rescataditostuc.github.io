@@ -26,7 +26,7 @@ const DIFUSION = [
     zona: 'Villa Alem',
     necesita: 'Tránsito Solidario o Adopción',
     urgente: true,
-    historia: 'Perrito lleva años viviendo en Jujuy y Fortunata García, se encunetra en muy mal estado.',
+    historia: 'Perrito lleva años viviendo en Jujuy y Fortunata García, se encuentra en muy mal estado.',
     foto: 'hogar/transito/perritojujuy.png',
     telefono: '5493816301226'
   },
