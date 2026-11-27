@@ -51,16 +51,6 @@ const DIFUSION = [
     telefono: '5493816471513'
   },
   {
-    nombre: 'Umma',
-    especie: 'perro',
-    zona: 'San Miguel de Tucumán',
-    necesita: 'Adopción',
-    urgente: false,
-    historia: 'Perrita, aproximadamente 3 años, muy mimosa, compañera, dependiente y sociable. Atravezó un tumor pero patitas.librestuc pagaron su tratamiento y se encuentra ya super sana y estable.',
-    foto: 'hogar/adopcion/umma.jpeg',
-    telefono: '5493816643292'
-  },
-  {
     nombre: 'Mila',
     especie: 'gato',
     zona: 'San Miguel de Tucumán',
