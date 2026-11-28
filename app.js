@@ -167,9 +167,9 @@ function mostrarAdopciones() {
 const botonesFiltroDifusion = document.querySelectorAll('[data-filtro-difusion]');
 function mostrarDifusion(filtro = 'todos') {
   const filtrados = DIFUSION.filter(d => {
-    const necesita = d.necesita.toLowerCase();
+    const necesita = d.necesita.trim().toLowerCase();
     if (filtro === 'todos') return true;
-    if (filtro === 'Adopción') return necesita.includes('adopción');
+    if (filtro === 'Adopción') return necesita === 'adopción';
     if (filtro === 'Tránsito Solidario o Adopción') return necesita.includes('tránsito');
     return true;
   });
