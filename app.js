@@ -62,6 +62,14 @@ const tarjetaAdopcion = a => `
       </ul>
       <p class="text-sm leading-relaxed flex-1">${a.historia}</p>
       <a href="${linkWhatsApp('Hola rescataditos.tuc! Me interesa adoptar a ' + a.nombre, a.telefono)}" target="_blank" rel="noopener noreferrer" class="btn btn-terracota">Quiero adoptarlo</a>
+      <button type="button"
+        onclick="compartirTarjeta(this)"
+        data-hash="#adopciones"
+        data-titulo="Adoptá a ${a.nombre} – rescataditos.tuc"
+        data-texto="🐾 ¡${a.nombre} busca familia en Tucumán! Conocé su historia y requisitos de adopción acá:"
+        class="btn btn-borde text-sm py-2">
+         Compartir caso 📲
+      </button>
     </div>
   </article>`;
 
