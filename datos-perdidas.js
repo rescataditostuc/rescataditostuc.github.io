@@ -33,7 +33,7 @@ const MASCOTAS_PERDIDAS = [
     telefono: '5493814157809'
   },
   {
-    nombre: ' Copito',
+    nombre: 'Copito',
     especie: 'perro',
     zona: 'CIUDADELA(Amador Lucero 446)',
     fecha: '2026-11-26',
@@ -41,6 +41,16 @@ const MASCOTAS_PERDIDAS = [
     estado: 'Se busca',
     foto: 'perdidos/copito.png',
     telefono: '5493816337641'
+  },
+  {
+    nombre: 'Aika',
+    especie: 'gato',
+    zona: 'Pueyrredón y Américo Vespucio (Colón al 2000)',
+    fecha: '2026-10-13',
+    descripcion: 'Gata tricolor, ojos color miel, asustadiza.',
+    estado: 'Se busca',
+    foto: 'perdidos/alka.png',
+    telefono: '5493814639927'
   }
 ]
 
