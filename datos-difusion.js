@@ -67,7 +67,7 @@ const DIFUSION = [
     necesita: 'Tránsito Solidario o Adopción',
     urgente: true,
     historia: 'Cachorro de 3 meses, desparasitado, nos hacemos cargo de sus gastos y lo necesario',
-    foto: 'hogar/transito/canelon.png',
+    foto: 'hogar/transito/canelon.jpeg',
     telefono: '5493816265119'
   }
 ];
