@@ -31,6 +31,16 @@ const MASCOTAS_PERDIDAS = [
     estado: 'Se busca',
     foto: 'perdidos/preco.png',
     telefono: '5493814157809'
+  },
+  {
+    nombre: ' Copito',
+    especie: 'perro',
+    zona: 'CIUDADELA(Amador Lucero 446)',
+    fecha: '2026-11-26',
+    descripcion: 'Caniche macho castrado de 6 años. Tenia pelo cortito al perderse.',
+    estado: 'Se busca',
+    foto: 'perdidos/copito.png',
+    telefono: '5493816337641'
   }
 ]
 
