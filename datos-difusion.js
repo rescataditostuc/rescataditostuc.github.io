@@ -59,5 +59,15 @@ const DIFUSION = [
     historia: 'Gatita, aproximadamente un mes y medio. Come solita, es muy buena y dócil.',
     foto: 'hogar/adopcion/mila.jpeg',
     telefono: '5493816471513'
+  },
+  {
+    nombre: 'Canelon',
+    especie: 'perro',
+    zona: 'San Miguel de Tucumán',
+    necesita: 'Tránsito Solidario o Adopción',
+    urgente: true,
+    historia: 'Cachorro de 3 meses, desparasitado, nos hacemos cargo de sus gastos y lo necesario',
+    foto: 'hogar/transito/canelon.png',
+    telefono: '5493816265119'
   }
 ];
