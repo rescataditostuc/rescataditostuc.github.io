@@ -59,15 +59,5 @@ const DIFUSION = [
     historia: 'Gatita, aproximadamente un mes y medio. Come solita, es muy buena y dócil.',
     foto: 'hogar/adopcion/mila.jpeg',
     telefono: '5493816471513'
-  },
-  {
-    nombre: '',
-    especie: 'gato',
-    zona: 'San Miguel de Tucumán',
-    necesita: 'Adopción',
-    urgente: false,
-    historia: 'Machito, 2 meses. Nació el 26 de septiembre. Ya sabe usar las piedritas, es súper mimoso y juguetón. Adopción con seguimiento y compromiso de castración.',
-    foto: 'hogar/adopcion/michigris.png',
-    telefono: '5493812029089'
   }
 ];
