@@ -66,8 +66,19 @@ const DIFUSION = [
     zona: 'San Miguel de Tucumán',
     necesita: 'Tránsito Solidario o Adopción',
     urgente: false,
-    historia: 'Cachorro de 3 meses, desparasitado, nos hacemos cargo de sus gastos y lo necesario',
+    historia: 'Cachorro de 3 meses, desparasitado, nos hacemos cargo de sus gastos y lo necesario.',
     foto: 'hogar/transito/canelon.jpeg',
     telefono: '5493816265119'
+  },
+  {
+    nombre: '',
+    especie: 'perro',
+    zona: 'Villa Carmela, barrio vial 2',
+    necesita: 'Tránsito Solidario o Adopción',
+    urgente: true,
+    historia: 'Perrito caniche fue abandonado hace rato, se colabora con los gastos.',
+    foto: 'hogar/transito/caniche.png',
+    telefono: '5493816716669'
   }
+
 ];
