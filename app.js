@@ -165,15 +165,12 @@ function mostrarAdopciones() {
 }
 
 const botonesFiltroDifusion = document.querySelectorAll('[data-filtro-difusion]');
-function mostrarDifusion(filtro) {
+function mostrarDifusion(filtro = 'todos') {
   const filtrados = DIFUSION.filter(d => {
     const necesita = d.necesita.toLowerCase();
     if (filtro === 'todos') return true;
     if (filtro === 'Adopción') return necesita.includes('adopción');
-    if (filtro === 'Tránsito Solidario') return necesita.includes('tránsito');
-    if (filtro === 'Tránsito Solidario o Adopción') {
-      return necesita.includes('tránsito') && necesita.includes('adopción');
-    }
+    if (filtro === 'Tránsito Solidario o Adopción') return necesita.includes('tránsito');
     return true;
   });
 
