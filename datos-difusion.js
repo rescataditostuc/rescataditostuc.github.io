@@ -65,7 +65,7 @@ const DIFUSION = [
     especie: 'perro',
     zona: 'San Miguel de Tucumán',
     necesita: 'Tránsito Solidario o Adopción',
-    urgente: true,
+    urgente: false,
     historia: 'Cachorro de 3 meses, desparasitado, nos hacemos cargo de sus gastos y lo necesario',
     foto: 'hogar/transito/canelon.jpeg',
     telefono: '5493816265119'
